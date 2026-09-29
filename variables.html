@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables in Programming · 1-hour lesson</title>
+  <style>
+    /* global reset & typography */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: #f6f9ff;
+      color: #0b1e33;
+      padding: 2rem 1.5rem;
+      line-height: 1.65;
+    }
+
+    .lesson-container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* header */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #0b1e33, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      display: inline-block;
+      border-bottom: 4px solid #3b82f6;
+      padding-bottom: 0.4rem;
+    }
+
+    .header .time-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 600;
+      padding: 0.35rem 1.3rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    }
+
+    /* single column stack */
+    .sections-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* card style */
+    .section-card {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      box-shadow: 0 15px 30px -10px rgba(0, 35, 80, 0.1), 0 2px 10px rgba(0, 0, 0, 0.02);
+      padding: 2rem 2rem 2.3rem;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e2ebf6;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .section-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 35px -12px rgba(0, 47, 112, 0.15);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.6rem;
+      border-bottom: 3px dashed #b9d3f0;
+      padding-bottom: 0.9rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0b2b5c;
+    }
+
+    .section-header .time {
+      margin-left: auto;
+      background: #e8f0fe;
+      border-radius: 30px;
+      padding: 0.3rem 1.1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e4d8c;
+      white-space: nowrap;
+    }
+
+    .icon {
+      font-size: 2.1rem;
+      line-height: 1;
+    }
+
+    /* lesson content */
+    .lesson-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .lesson-text h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2b5c;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lesson-text h3 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #2563eb;
+      color: white;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .lesson-text h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .lesson-text p {
+      font-size: 1rem;
+      color: #1e293b;
+      margin-bottom: 0.6rem;
+    }
+
+    .concept-box {
+      background: #eef4ff;
+      border-left: 6px solid #2563eb;
+      padding: 1.2rem 1.4rem;
+      border-radius: 1rem;
+      font-size: 1rem;
+      color: #0a1e3c;
+    }
+
+    /* code block */
+    .code-block {
+      background: #0b1e33;
+      color: #e0edff;
+      border-radius: 1rem;
+      padding: 1rem 1.3rem;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      overflow-x: auto;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+      margin: 0.7rem 0;
+    }
+
+    .code-block .kw {
+      color: #7dd3fc;
+      font-weight: 600;
+    }
+
+    .code-block .num-lit {
+      color: #fbbf24;
+    }
+
+    .code-block .str {
+      color: #86efac;
+    }
+
+    .code-block .comment {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    .code-block .op {
+      color: #f472b6;
+      font-weight: 700;
+    }
+
+    .code-block .var {
+      color: #c4b5fd;
+      font-weight: 600;
+    }
+
+    /* table */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+      font-size: 0.92rem;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .info-table th {
+      background: #2563eb;
+      color: white;
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .info-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #e2ebf6;
+      background: #ffffff;
+      vertical-align: top;
+    }
+
+    .info-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .info-table tr:nth-child(even) td {
+      background: #f7faff;
+    }
+
+    .info-table td.code-cell {
+      font-family: 'Fira Code', 'Courier New', monospace;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* rule list */
+    .rule-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 0.2rem;
+    }
+
+    .rule-list li {
+      display: flex;
+      gap: 0.7rem;
+      align-items: baseline;
+      font-size: 1rem;
+    }
+
+    .rule-list li::before {
+      content: "▹";
+      color: #2563eb;
+      font-weight: bold;
+      font-size: 1.3rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* highlight box */
+    .highlight-box {
+      background: #e6f0ff;
+      border-radius: 1rem;
+      padding: 1.2rem 1.4rem;
+      font-size: 0.98rem;
+      border: 1px solid #c8ddfa;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0.4rem;
+    }
+
+    .highlight-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* good/bad example */
+    .example-grid {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 0.8rem 0;
+    }
+
+    .example-card {
+      flex: 1 1 220px;
+      border-radius: 1rem;
+      padding: 1rem 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .example-card.good {
+      background: #dcfce7;
+      border-left: 5px solid #16a34a;
+      color: #14532d;
+    }
+
+    .example-card.bad {
+      background: #fee2e2;
+      border-left: 5px solid #dc2626;
+      color: #7f1d1d;
+    }
+
+    .example-card h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .example-card code {
+      font-family: 'Fira Code', 'Courier New', monospace;
+      background: rgba(0, 0, 0, 0.06);
+      padding: 0.1rem 0.4rem;
+      border-radius: 0.3rem;
+      font-weight: 600;
+    }
+
+    /* practice content */
+    .practice-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .question-block {
+      background: #f9fcff;
+      padding: 1.2rem 1.4rem;
+      border-radius: 1.2rem;
+      border: 1px solid #d4e2fc;
+    }
+
+    .question-label {
+      font-weight: 600;
+      color: #123a6b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      background: #dbeafe;
+      border-radius: 30px;
+      padding: 0.15rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1e40af;
+    }
+
+    .code-question {
+      background: #0b1e33;
+      color: #e0edff;
+      border-radius: 0.9rem;
+      padding: 0.8rem 1.1rem;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0.4rem 0 1rem;
+      overflow-x: auto;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .option-btn {
+      background: #eaf0fa;
+      border: none;
+      border-radius: 2.5rem;
+      padding: 0.7rem 1.6rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #0b1e33;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      flex: 1 0 auto;
+      font-family: 'Fira Code', 'Courier New', monospace;
+    }
+
+    .option-btn:hover {
+      background: #cfdef5;
+    }
+
+    .option-btn.selected {
+      background: #2563eb;
+      color: white;
+      border-color: #1e40af;
+    }
+
+    .feedback {
+      font-size: 0.95rem;
+      margin-top: 0.6rem;
+      min-height: 1.6rem;
+      font-weight: 500;
+    }
+
+    .feedback.correct {
+      color: #0f7b3e;
+    }
+
+    .feedback.incorrect {
+      color: #b91c1c;
+    }
+
+    .check-btn {
+      background: #0b1e33;
+      color: white;
+      border: none;
+      border-radius: 3rem;
+      padding: 0.9rem 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    .check-btn:hover {
+      background: #1e2f4a;
+    }
+
+    /* assessment area */
+    .assessment-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .quiz-item {
+      background: #f9fcff;
+      border-radius: 1.2rem;
+      padding: 1.2rem 1.4rem;
+      border-left: 6px solid #2563eb;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      color: #0b1e33;
+      font-size: 1.05rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-opt {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #ffffff;
+      padding: 0.7rem 1rem;
+      border-radius: 0.9rem;
+      border: 1px solid #d9e4f5;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .quiz-opt:hover {
+      background: #eef4fe;
+    }
+
+    .quiz-opt input[type="radio"] {
+      accent-color: #2563eb;
+      width: 1.15rem;
+      height: 1.15rem;
+      margin: 0;
+    }
+
+    .quiz-opt label {
+      font-size: 1rem;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .assess-feedback {
+      font-size: 0.95rem;
+      font-weight: 500;
+      min-height: 1.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .assess-feedback.correct {
+      color: #0f7b3e;
+    }
+
+    .assess-feedback.incorrect {
+      color: #b91c1c;
+    }
+
+    .submit-assessment {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 3rem;
+      padding: 1rem 1.2rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      width: 100%;
+      margin-top: 0.5rem;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .submit-assessment:hover {
+      background: #1d4ed8;
+    }
+
+    .submit-assessment:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .score-display {
+      text-align: center;
+      font-weight: 600;
+      margin-top: 0.6rem;
+      background: #e4eefc;
+      padding: 0.7rem;
+      border-radius: 3rem;
+      font-size: 1rem;
+      color: #103a6b;
+    }
+
+    /* navigation bar */
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      border: 2px solid #c8ddfa;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.12);
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+    }
+
+    .nav-link .nav-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* footnotes */
+    .footnote {
+      margin-top: 2.8rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #4b6589;
+      border-top: 1px solid #d0ddef;
+      padding-top: 1.5rem;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.9rem;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-card {
+        padding: 1.5rem 1.2rem 1.8rem;
+      }
+
+      .section-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .option-btn {
+        padding: 0.6rem 1.1rem;
+        font-size: 0.95rem;
+      }
+
+      .info-table {
+        font-size: 0.8rem;
+      }
+
+      .info-table th,
+      .info-table td {
+        padding: 0.45rem 0.5rem;
+      }
+
+      .nav-link {
+        padding: 0.55rem 1.1rem;
+        font-size: 0.9rem;
+      }
+
+      .code-block {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- header -->
+    <div class="header">
+      <h1>📦 Variables in Programming</h1>
+      <div class="time-badge">⏱️ 1 hour · 3 sections</div>
+    </div>
+
+    <!-- ============ TOP NAVIGATION LINKS ============ -->
+    <nav class="nav-bar">
+      <a href="index.html" class="nav-link">
+        <span class="nav-icon">🏠</span> Home
+      </a>
+      <a href="data.html" class="nav-link">
+        <span class="nav-icon">➡️</span> Next: Data
+      </a>
+    </nav>
+
+    <!-- single column stack: lesson, practice, assessment -->
+    <div class="sections-stack">
+      <!-- ============ LESSON (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">📘</span>
+          <h2>Lesson</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="lesson-text">
+
+          <!-- Section 1: What is a variable? -->
+          <div>
+            <h3><span class="num">1</span> What is a variable?</h3>
+            <p>
+              A <strong>variable</strong> is a named container that stores a value in a computer's 
+              memory. Think of it like a labeled box: the label is the variable's <em>name</em>, and 
+              the contents of the box are the variable's <em>value</em>.
+            </p>
+            <p>
+              Variables allow programs to remember information, change it over time, and reuse it 
+              throughout the code. Without variables, every value would have to be hard-coded and 
+              could never change — making programs rigid and nearly useless.
+            </p>
+            <div class="concept-box">
+              <strong>💡 Key idea:</strong> A variable is a <em>named reference</em> to a value 
+              stored in memory. When you write <code style="background:#dbeafe; padding:0.1rem 0.5rem; border-radius:0.4rem;">age = 25</code>, 
+              you are telling the computer: "Create a box labeled <strong>age</strong> and put the 
+              value <strong>25</strong> inside it."
+            </div>
+          </div>
+
+          <!-- Section 2: How to write a variable -->
+          <div>
+            <h3><span class="num">2</span> How to write a variable</h3>
+            <p>
+              In most programming languages, creating a variable involves three steps: 
+              <strong>declaration</strong>, <strong>assignment</strong>, and <strong>usage</strong>. 
+              The exact syntax depends on the language, but the concept is universal.
+            </p>
+
+            <h4>Step 1 — Declaration &amp; Assignment</h4>
+            <p>
+              You <em>declare</em> a variable by giving it a name, and you <em>assign</em> a value 
+              to it using the equals sign (<code>=</code>). In many languages, this happens in a 
+              single line:
+            </p>
+            <div class="code-block">
+              <span class="comment"># Python — no keyword needed</span><br>
+              <span class="var">age</span> <span class="op">=</span> <span class="num-lit">25</span><br>
+              <span class="var">name</span> <span class="op">=</span> <span class="str">"Alice"</span><br>
+              <span class="var">is_student</span> <span class="op">=</span> <span class="kw">True</span><br>
+              <br>
+              <span class="comment">// JavaScript — uses let or const</span><br>
+              <span class="kw">let</span> <span class="var">age</span> <span class="op">=</span> <span class="num-lit">25</span>;<br>
+              <span class="kw">const</span> <span class="var">name</span> <span class="op">=</span> <span class="str">"Alice"</span>;<br>
+              <br>
+              <span class="comment">// Java — requires a type</span><br>
+              <span class="kw">int</span> <span class="var">age</span> <span class="op">=</span> <span class="num-lit">25</span>;<br>
+              <span class="kw">String</span> <span class="var">name</span> <span class="op">=</span> <span class="str">"Alice"</span>;
+            </div>
+
+            <h4>Step 2 — Using the variable</h4>
+            <p>
+              Once a variable is created, you can use its name anywhere you want its value. The 
+              computer will substitute the stored value automatically:
+            </p>
+            <div class="code-block">
+              <span class="var">age</span> <span class="op">=</span> <span class="num-lit">25</span><br>
+              <span class="kw">print</span>(<span class="var">age</span>) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment"># 25</span><br>
+              <span class="kw">print</span>(<span class="var">age</span> <span class="op">+</span> <span class="num-lit">5</span>) &nbsp; <span class="comment"># 30</span><br>
+              <span class="kw">print</span>(<span class="str">"I am"</span>, <span class="var">age</span>) <span class="comment"># I am 25</span>
+            </div>
+
+            <h4>Step 3 — Reassigning (changing the value)</h4>
+            <p>
+              Unlike mathematics, a variable's value can <strong>change</strong> during the program. 
+              This is one of the most important differences between variables in programming and 
+              variables in math.
+            </p>
+            <div class="code-block">
+              <span class="var">score</span> <span class="op">=</span> <span class="num-lit">0</span><br>
+              <span class="kw">print</span>(<span class="var">score</span>) &nbsp; <span class="comment"># 0</span><br>
+              <br>
+              <span class="var">score</span> <span class="op">=</span> <span class="num-lit">10</span> &nbsp; <span class="comment"># reassign a new value</span><br>
+              <span class="kw">print</span>(<span class="var">score</span>) &nbsp; <span class="comment"># 10</span><br>
+              <br>
+              <span class="var">score</span> <span class="op">+=</span> <span class="num-lit">5</span> &nbsp; <span class="comment"># increase by 5</span><br>
+              <span class="kw">print</span>(<span class="var">score</span>) &nbsp; <span class="comment"># 15</span>
+            </div>
+          </div>
+
+          <!-- Section 3: Naming rules -->
+          <div>
+            <h3><span class="num">3</span> How should variables be named?</h3>
+            <p>
+              Choosing good variable names is one of the most important skills in programming. A 
+              well-named variable makes code <em>self-documenting</em> — anyone reading it can 
+              understand what it does without extra comments.
+            </p>
+
+            <h4>Syntax rules (must follow)</h4>
+            <ul class="rule-list">
+              <li>Names must start with a <strong>letter</strong> or an underscore (<code>_</code>), not a digit.</li>
+              <li>Names can contain letters, digits, and underscores — <em>no spaces or special symbols</em>.</li>
+              <li>Names are <strong>case-sensitive</strong>: <code>age</code>, <code>Age</code>, and <code>AGE</code> are three different variables.</li>
+              <li>You cannot use <strong>reserved keywords</strong> (like <code>if</code>, <code>while</code>, <code>class</code>, <code>return</code>).</li>
+            </ul>
+
+            <h4>Style conventions (should follow)</h4>
+            <table class="info-table">
+              <thead>
+                <tr>
+                  <th>Convention</th>
+                  <th>Style</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>snake_case</td>
+                  <td>lowercase words separated by underscores</td>
+                  <td class="code-cell">user_name, total_price</td>
+                </tr>
+                <tr>
+                  <td>camelCase</td>
+                  <td>first word lowercase, following words capitalized</td>
+                  <td class="code-cell">userName, totalPrice</td>
+                </tr>
+                <tr>
+                  <td>PascalCase</td>
+                  <td>every word capitalized (usually for classes)</td>
+                  <td class="code-cell">UserName, TotalPrice</td>
+                </tr>
+                <tr>
+                  <td>SCREAMING_SNAKE</td>
+                  <td>uppercase with underscores (for constants)</td>
+                  <td class="code-cell">MAX_SIZE, PI</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Good vs. bad names</h4>
+            <div class="example-grid">
+              <div class="example-card good">
+                <h5>✅ Good</h5>
+                <p><code>user_age</code> — clear and descriptive</p>
+                <p><code>total_price</code> — tells you what it holds</p>
+                <p><code>is_logged_in</code> — reads like a true/false question</p>
+                <p><code>MAX_SPEED</code> — constant, uppercase</p>
+              </div>
+              <div class="example-card bad">
+                <h5>❌ Bad</h5>
+                <p><code>a</code> — meaningless</p>
+                <p><code>x1</code> — unclear</p>
+                <p><code>data</code> — too vague</p>
+                <p><code>TotalPriceIncludingTax</code> — overly long</p>
+                <p><code>user name</code> — contains a space (invalid)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: How variables differ from math -->
+          <div>
+            <h3><span class="num">4</span> How variables differ from mathematics</h3>
+            <p>
+              If you have studied algebra, you already know about variables like <em>x</em> and 
+              <em>y</em>. But programming variables behave quite differently from mathematical 
+              variables. This is one of the most important conceptual shifts for beginners.
+            </p>
+
+            <table class="info-table">
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>Mathematics</th>
+                  <th>Programming</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Meaning</strong></td>
+                  <td>A variable represents an <em>unknown</em> value to be solved</td>
+                  <td>A variable is a <em>named container</em> for a stored value</td>
+                </tr>
+                <tr>
+                  <td><strong>Can it change?</strong></td>
+                  <td>Usually fixed — <em>x</em> stays the same within a problem</td>
+                  <td>Yes — the value can be reassigned at any time</td>
+                </tr>
+                <tr>
+                  <td><strong>Naming</strong></td>
+                  <td>Short symbols like <em>x</em>, <em>y</em>, <em>n</em></td>
+                  <td>Descriptive names like <code>user_age</code>, <code>total_score</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Equation meaning</strong></td>
+                  <td><code>x = x + 1</code> is unsolvable (or means "no solution")</td>
+                  <td><code>x = x + 1</code> means "increase x by 1" — perfectly valid!</td>
+                </tr>
+                <tr>
+                  <td><strong>Case sensitivity</strong></td>
+                  <td><em>X</em> and <em>x</em> often considered the same</td>
+                  <td><code>X</code> and <code>x</code> are two <em>different</em> variables</td>
+                </tr>
+                <tr>
+                  <td><strong>Purpose</strong></td>
+                  <td>To solve for an unknown</td>
+                  <td>To store, retrieve, and manipulate data</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="highlight-box">
+              <p><strong>⚠️ The biggest mental shift:</strong> In math, <code>x = x + 1</code> is 
+              a contradiction (no number equals itself plus one). In programming, it is a perfectly 
+              normal instruction: "<em>take the current value of x, add 1, and store the result back 
+              into x</em>."</p>
+              <p>This is called <strong>reassignment</strong>, and it is one of the most powerful 
+              features of programming variables.</p>
+            </div>
+
+            <h4>Example: math vs. programming</h4>
+            <div class="code-block">
+              <span class="comment"># In programming, this is completely valid:</span><br>
+              <span class="var">counter</span> <span class="op">=</span> <span class="num-lit">0</span><br>
+              <span class="var">counter</span> <span class="op">=</span> <span class="var">counter</span> <span class="op">+</span> <span class="num-lit">1</span> &nbsp; <span class="comment"># counter is now 1</span><br>
+              <span class="var">counter</span> <span class="op">=</span> <span class="var">counter</span> <span class="op">+</span> <span class="num-lit">1</span> &nbsp; <span class="comment"># counter is now 2</span><br>
+              <span class="var">counter</span> <span class="op">=</span> <span class="var">counter</span> <span class="op">+</span> <span class="num-lit">1</span> &nbsp; <span class="comment"># counter is now 3</span><br>
+              <span class="kw">print</span>(<span class="var">counter</span>) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment"># 3</span>
+            </div>
+            <p>
+              This pattern of repeatedly updating a variable is the foundation of <em>loops</em>, 
+              <em>counters</em>, <em>accumulators</em>, and countless other programming techniques.
+            </p>
+          </div>
+
+          <!-- Section 5: Types of variables -->
+          <div>
+            <h3><span class="num">5</span> What can variables hold?</h3>
+            <p>
+              Variables can store many kinds of values — not just numbers. The kind of value a 
+              variable holds is called its <strong>data type</strong>. Here are the most common ones:
+            </p>
+            <table class="info-table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Integer</strong></td>
+                  <td>Whole numbers (positive, negative, or zero)</td>
+                  <td class="code-cell">age = 25</td>
+                </tr>
+                <tr>
+                  <td><strong>Float</strong></td>
+                  <td>Decimal numbers</td>
+                  <td class="code-cell">price = 19.99</td>
+                </tr>
+                <tr>
+                  <td><strong>String</strong></td>
+                  <td>Text — letters, words, sentences</td>
+                  <td class="code-cell">name = "Alice"</td>
+                </tr>
+                <tr>
+                  <td><strong>Boolean</strong></td>
+                  <td>True or false values</td>
+                  <td class="code-cell">is_active = True</td>
+                </tr>
+                <tr>
+                  <td><strong>List / Array</strong></td>
+                  <td>An ordered collection of values</td>
+                  <td class="code-cell">scores = [90, 85, 77]</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              Some languages (like Python and JavaScript) allow a variable to change its type 
+              dynamically. Others (like Java and C++) require you to declare the type upfront, and 
+              it cannot change.
+            </p>
+            <div class="code-block">
+              <span class="comment"># Python: type can change dynamically</span><br>
+              <span class="var">x</span> <span class="op">=</span> <span class="num-lit">42</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment"># integer</span><br>
+              <span class="var">x</span> <span class="op">=</span> <span class="str">"hello"</span> &nbsp; <span class="comment"># now a string — that's fine</span><br>
+              <br>
+              <span class="comment">// Java: type is fixed at declaration</span><br>
+              <span class="kw">int</span> <span class="var">x</span> <span class="op">=</span> <span class="num-lit">42</span>;<br>
+              <span class="comment">// x = "hello";  // ERROR — x must stay an int</span>
+            </div>
+          </div>
+
+          <!-- Section 6: Best practices -->
+          <div>
+            <h3><span class="num">6</span> Best practices for using variables</h3>
+            <ul class="rule-list">
+              <li><strong>Use meaningful names</strong> — <code>total_price</code> is far better than <code>tp</code>.</li>
+              <li><strong>Be consistent</strong> — pick one naming style (snake_case or camelCase) and stick with it.</li>
+              <li><strong>Avoid single letters</strong> — except for simple loop counters like <code>i</code>, <code>j</code>.</li>
+              <li><strong>Keep names readable</strong> — avoid abbreviations that aren't obvious.</li>
+              <li><strong>Use constants for fixed values</strong> — <code>MAX_SIZE = 100</code> in uppercase.</li>
+              <li><strong>Declare variables close to where they're used</strong> — improves readability.</li>
+              <li><strong>Don't reuse variables for different purposes</strong> — it confuses readers and can cause bugs.</li>
+              <li><strong>Comment when necessary</strong> — explain <em>why</em>, not <em>what</em>.</li>
+            </ul>
+          </div>
+
+          <!-- Section 7: Key facts -->
+          <div>
+            <h3><span class="num">7</span> Key facts to remember</h3>
+            <div class="highlight-box">
+              <p>• A <strong>variable</strong> is a named container for a value in memory.</p>
+              <p>• Creating a variable = <strong>declaring</strong> its name + <strong>assigning</strong> a value.</p>
+              <p>• Variables can be <strong>reassigned</strong> — their value can change during the program.</p>
+              <p>• <code>x = x + 1</code> is valid in programming (means "increase x by 1").</p>
+              <p>• Names must start with a letter or underscore, and cannot contain spaces.</p>
+              <p>• Names are <strong>case-sensitive</strong>: <code>age</code> ≠ <code>Age</code>.</p>
+              <p>• Use <strong>snake_case</strong> or <strong>camelCase</strong> for readability.</p>
+              <p>• <strong>Constants</strong> (unchanging values) use SCREAMING_SNAKE_CASE.</p>
+              <p>• Variables can hold many types: integers, floats, strings, booleans, lists.</p>
+              <p>• Unlike math, a programming variable is a <em>storage box</em>, not an unknown.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ PRACTICE (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">✏️</span>
+          <h2>Practice</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="practice-area" id="practiceArea">
+          <!-- practice question 1 -->
+          <div class="question-block" data-q="1">
+            <div class="question-label">
+              <span>1. Which of these is a <em>valid</em> variable name?</span>
+              <span class="badge">naming rules</span>
+            </div>
+            <div class="code-question">
+              <span class="comment"># Pick the valid variable name</span>
+            </div>
+            <div class="options">
+              <button class="option-btn" data-opt="user_name">user_name</button>
+              <button class="option-btn" data-opt="2ndScore">2ndScore</button>
+              <button class="option-btn" data-opt="user name">user name</button>
+            </div>
+            <div class="feedback" id="fb1"></div>
+          </div>
+
+          <!-- practice question 2 -->
+          <div class="question-block" data-q="2">
+            <div class="question-label">
+              <span>2. What is the final value of <code>x</code>?</span>
+              <span class="badge">reassignment</span>
+            </div>
+            <div class="code-question">
+              <span class="var">x</span> <span class="op">=</span> <span class="num-lit">5</span><br>
+              <span class="var">x</span> <span class="op">=</span> <span class="var">x</span> <span class="op">+</span> <span class="num-lit">3</span><br>
+              <span class="var">x</span> <span class="op">=</span> <span class="var">x</span> <span class="op">*</span> <span class="num-lit">2</span>
+            </div>
+            <div class="options">
+              <button class="option-btn" data-opt="16">16</button>
+              <button class="option-btn" data-opt="13">13</button>
+              <button class="option-btn" data-opt="10">10</button>
+            </div>
+            <div class="feedback" id="fb2"></div>
+          </div>
+
+          <button class="check-btn" id="checkPracticeBtn">✓ Check practice answers</button>
+          <div style="font-size:0.95rem; color:#1e4d8c; text-align:center; margin-top:0.3rem; font-weight:500;">
+            <span id="practiceScore">0 / 2 correct</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ ASSESSMENT (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">📝</span>
+          <h2>Assessment</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="assessment-area" id="assessmentArea">
+          <!-- Q1 -->
+          <div class="quiz-item" data-quiz="1">
+            <div class="quiz-question">1. Which statement is <u>true</u> about programming variables compared to math variables?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q1" value="A"> A) They cannot change value once set.</label>
+              <label class="quiz-opt"><input type="radio" name="q1" value="B"> B) They can be reassigned new values during the program.</label>
+              <label class="quiz-opt"><input type="radio" name="q1" value="C"> C) They must always be single letters like x and y.</label>
+            </div>
+            <div class="assess-feedback" id="af1"></div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="quiz-item" data-quiz="2">
+            <div class="quiz-question">2. What does <code>x = x + 1</code> mean in programming?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q2" value="A"> A) It's an error — impossible equation.</label>
+              <label class="quiz-opt"><input type="radio" name="q2" value="B"> B) Take the current value of x, add 1, store back into x.</label>
+              <label class="quiz-opt"><input type="radio" name="q2" value="C"> C) It creates a new variable called x+1.</label>
+            </div>
+            <div class="assess-feedback" id="af2"></div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="quiz-item" data-quiz="3">
+            <div class="quiz-question">3. Which is the best variable name for storing a user's total purchase amount?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q3" value="A"> A) <code>t</code></label>
+              <label class="quiz-opt"><input type="radio" name="q3" value="B"> B) <code>data</code></label>
+              <label class="quiz-opt"><input type="radio" name="q3" value="C"> C) <code>total_purchase_amount</code></label>
+            </div>
+            <div class="assess-feedback" id="af3"></div>
+          </div>
+
+          <button class="submit-assessment" id="submitAssessment">📥 Submit assessment</button>
+          <div class="score-display" id="assessmentScore">Score: — / 3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BOTTOM NAVIGATION LINKS ============ -->
+    <nav class="nav-bar" style="margin-top: 2.5rem; margin-bottom: 0;">
+      <a href="index.html" class="nav-link">
+        <span class="nav-icon">🏠</span> Home
+      </a>
+      <a href="data.html" class="nav-link">
+        <span class="nav-icon">➡️</span> Next: Data
+      </a>
+    </nav>
+
+    <div class="footnote">
+      ⏳ total time: 60 minutes • lesson 20' • practice 20' • assessment 20' • variables in programming
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- PRACTICE LOGIC ----------
+      // Practice question 1: valid name = "user_name" (snake_case, starts with letter)
+      // Practice question 2: x = 5, x = 5 + 3 = 8, x = 8 * 2 = 16 → correct "16"
+      const practiceCorrectMap = {
+        1: "user_name",
+        2: "16"
+      };
+
+      // store selected options for practice
+      const selectedPractice = {
+        1: null,
+        2: null
+      };
+
+      // attach click handlers to practice option buttons
+      document.querySelectorAll('.question-block').forEach(block => {
+        const qNum = block.dataset.q;
+        const optionBtns = block.querySelectorAll('.option-btn');
+        optionBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            // remove selected class from siblings
+            optionBtns.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            // store selected value (data-opt attribute)
+            selectedPractice[qNum] = btn.dataset.opt;
+            // clear feedback when a new selection is made
+            const fb = document.getElementById(`fb${qNum}`);
+            if (fb) fb.textContent = '';
+          });
+        });
+      });
+
+      // check practice answers
+      const checkPracticeBtn = document.getElementById('checkPracticeBtn');
+      const practiceScoreSpan = document.getElementById('practiceScore');
+
+      function evaluatePractice() {
+        let correctCount = 0;
+
+        // Question 1
+        const fb1 = document.getElementById('fb1');
+        const q1Selected = selectedPractice[1];
+        if (q1Selected === practiceCorrectMap[1]) {
+          fb1.textContent = '✓ Correct! user_name is valid — starts with a letter and uses snake_case.';
+          fb1.className = 'feedback correct';
+          correctCount++;
+        } else {
+          fb1.textContent = q1Selected ? '✗ Incorrect. Names cannot start with a digit or contain spaces.' : '⚠️ Please select an answer.';
+          fb1.className = 'feedback incorrect';
+        }
+
+        // Question 2
+        const fb2 = document.getElementById('fb2');
+        const q2Selected = selectedPractice[2];
+        if (q2Selected === practiceCorrectMap[2]) {
+          fb2.textContent = '✓ Correct! x = 5 → x = 5 + 3 = 8 → x = 8 × 2 = 16.';
+          fb2.className = 'feedback correct';
+          correctCount++;
+        } else {
+          fb2.textContent = q2Selected ? '✗ Incorrect. Step by step: 5 + 3 = 8, then 8 × 2 = 16.' : '⚠️ Please select an answer.';
+          fb2.className = 'feedback incorrect';
+        }
+
+        practiceScoreSpan.textContent = `${correctCount} / 2 correct`;
+        return correctCount;
+      }
+
+      checkPracticeBtn.addEventListener('click', evaluatePractice);
+
+      // ---------- ASSESSMENT LOGIC ----------
+      const submitAssessment = document.getElementById('submitAssessment');
+      const assessmentScoreDiv = document.getElementById('assessmentScore');
+
+      // correct answers for assessment
+      const assessmentKey = {
+        q1: 'B',  // can be reassigned
+        q2: 'B',  // increase x by 1
+        q3: 'C'   // total_purchase_amount
+      };
+
+      function resetAssessmentFeedback() {
+        for (let i = 1; i <= 3; i++) {
+          const fb = document.getElementById(`af${i}`);
+          if (fb) {
+            fb.textContent = '';
+            fb.className = 'assess-feedback';
+          }
+        }
+      }
+
+      // clear feedback when user selects a new radio option
+      document.querySelectorAll('.quiz-opt input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          const name = e.target.name; // q1, q2, q3
+          const qNum = name.charAt(1);
+          const fb = document.getElementById(`af${qNum}`);
+          if (fb) {
+            fb.textContent = '';
+            fb.className = 'assess-feedback';
+          }
+        });
+      });
+
+      submitAssessment.addEventListener('click', () => {
+        // reset any previous feedback
+        resetAssessmentFeedback();
+
+        let correctCount = 0;
+        let allAnswered = true;
+
+        // Q1
+        const q1Selected = document.querySelector('input[name="q1"]:checked');
+        const af1 = document.getElementById('af1');
+        if (!q1Selected) {
+          af1.textContent = '⚠️ Please select an answer.';
+          af1.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q1Selected.value === assessmentKey.q1) {
+            af1.textContent = '✓ Correct! Programming variables can be reassigned new values.';
+            af1.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af1.textContent = '✗ Incorrect. Unlike math variables, programming variables can change.';
+            af1.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // Q2
+        const q2Selected = document.querySelector('input[name="q2"]:checked');
+        const af2 = document.getElementById('af2');
+        if (!q2Selected) {
+          af2.textContent = '⚠️ Please select an answer.';
+          af2.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q2Selected.value === assessmentKey.q2) {
+            af2.textContent = '✓ Correct! It means: take current x, add 1, store back into x.';
+            af2.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af2.textContent = '✗ Incorrect. In programming, = means assignment (store), not math equality.';
+            af2.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // Q3
+        const q3Selected = document.querySelector('input[name="q3"]:checked');
+        const af3 = document.getElementById('af3');
+        if (!q3Selected) {
+          af3.textContent = '⚠️ Please select an answer.';
+          af3.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q3Selected.value === assessmentKey.q3) {
+            af3.textContent = '✓ Correct! total_purchase_amount is clear and descriptive.';
+            af3.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af3.textContent = '✗ Incorrect. Meaningful, descriptive names are best.';
+            af3.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // update score display
+        assessmentScoreDiv.textContent = `Score: ${correctCount} / 3`;
+        if (!allAnswered) {
+          assessmentScoreDiv.textContent += ' (answer all questions)';
+        }
+      });
+
+      // clear practice selections on load (already null)
+    })();
+  </script>
+</body>
+</html>

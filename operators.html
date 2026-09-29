@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operators in Programming · 1-hour lesson</title>
+  <style>
+    /* global reset & typography */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: #f6f9ff;
+      color: #0b1e33;
+      padding: 2rem 1.5rem;
+      line-height: 1.65;
+    }
+
+    .lesson-container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* header */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #0b1e33, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      display: inline-block;
+      border-bottom: 4px solid #3b82f6;
+      padding-bottom: 0.4rem;
+    }
+
+    .header .time-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 600;
+      padding: 0.35rem 1.3rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    }
+
+    /* single column stack */
+    .sections-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* card style */
+    .section-card {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      box-shadow: 0 15px 30px -10px rgba(0, 35, 80, 0.1), 0 2px 10px rgba(0, 0, 0, 0.02);
+      padding: 2rem 2rem 2.3rem;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e2ebf6;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .section-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 35px -12px rgba(0, 47, 112, 0.15);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.6rem;
+      border-bottom: 3px dashed #b9d3f0;
+      padding-bottom: 0.9rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0b2b5c;
+    }
+
+    .section-header .time {
+      margin-left: auto;
+      background: #e8f0fe;
+      border-radius: 30px;
+      padding: 0.3rem 1.1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e4d8c;
+      white-space: nowrap;
+    }
+
+    .icon {
+      font-size: 2.1rem;
+      line-height: 1;
+    }
+
+    /* lesson content */
+    .lesson-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .lesson-text h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2b5c;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lesson-text h3 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #2563eb;
+      color: white;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .lesson-text h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .lesson-text p {
+      font-size: 1rem;
+      color: #1e293b;
+      margin-bottom: 0.6rem;
+    }
+
+    .concept-box {
+      background: #eef4ff;
+      border-left: 6px solid #2563eb;
+      padding: 1.2rem 1.4rem;
+      border-radius: 1rem;
+      font-size: 1rem;
+      color: #0a1e3c;
+    }
+
+    /* code block */
+    .code-block {
+      background: #0b1e33;
+      color: #e0edff;
+      border-radius: 1rem;
+      padding: 1rem 1.3rem;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      overflow-x: auto;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+      margin: 0.7rem 0;
+    }
+
+    .code-block .kw {
+      color: #7dd3fc;
+      font-weight: 600;
+    }
+
+    .code-block .num-lit {
+      color: #fbbf24;
+    }
+
+    .code-block .str {
+      color: #86efac;
+    }
+
+    .code-block .comment {
+      color: #94a3b8;
+      font-style: italic;
+    }
+
+    .code-block .op {
+      color: #f472b6;
+      font-weight: 700;
+    }
+
+    .code-block .out {
+      color: #fcd34d;
+    }
+
+    /* operator table */
+    .op-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+      font-size: 0.92rem;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .op-table th {
+      background: #2563eb;
+      color: white;
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .op-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #e2ebf6;
+      background: #ffffff;
+      vertical-align: top;
+    }
+
+    .op-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .op-table tr:nth-child(even) td {
+      background: #f7faff;
+    }
+
+    .op-table td.symbol {
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-weight: 700;
+      color: #2563eb;
+      font-size: 1.05rem;
+      white-space: nowrap;
+    }
+
+    .op-table td.example {
+      font-family: 'Fira Code', 'Courier New', monospace;
+      color: #0b1e33;
+      font-size: 0.9rem;
+    }
+
+    /* truth table */
+    .truth-table {
+      width: 100%;
+      max-width: 480px;
+      border-collapse: collapse;
+      margin: 0.8rem auto;
+      font-size: 0.95rem;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .truth-table th {
+      background: #1e3a8a;
+      color: white;
+      padding: 0.6rem 0.8rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .truth-table td {
+      padding: 0.55rem 0.8rem;
+      text-align: center;
+      border-bottom: 1px solid #e2ebf6;
+      background: #ffffff;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-weight: 600;
+    }
+
+    .truth-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .truth-table tr:nth-child(even) td {
+      background: #f7faff;
+    }
+
+    .truth-table td.true {
+      color: #0f7b3e;
+    }
+
+    .truth-table td.false {
+      color: #b91c1c;
+    }
+
+    /* highlight box */
+    .highlight-box {
+      background: #e6f0ff;
+      border-radius: 1rem;
+      padding: 1.2rem 1.4rem;
+      font-size: 0.98rem;
+      border: 1px solid #c8ddfa;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0.4rem;
+    }
+
+    .highlight-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* practice content */
+    .practice-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .question-block {
+      background: #f9fcff;
+      padding: 1.2rem 1.4rem;
+      border-radius: 1.2rem;
+      border: 1px solid #d4e2fc;
+    }
+
+    .question-label {
+      font-weight: 600;
+      color: #123a6b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      background: #dbeafe;
+      border-radius: 30px;
+      padding: 0.15rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1e40af;
+    }
+
+    .code-question {
+      background: #0b1e33;
+      color: #e0edff;
+      border-radius: 0.9rem;
+      padding: 0.8rem 1.1rem;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 0.4rem 0 1rem;
+      overflow-x: auto;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .option-btn {
+      background: #eaf0fa;
+      border: none;
+      border-radius: 2.5rem;
+      padding: 0.7rem 1.6rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #0b1e33;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      flex: 1 0 auto;
+      font-family: 'Fira Code', 'Courier New', monospace;
+    }
+
+    .option-btn:hover {
+      background: #cfdef5;
+    }
+
+    .option-btn.selected {
+      background: #2563eb;
+      color: white;
+      border-color: #1e40af;
+    }
+
+    .feedback {
+      font-size: 0.95rem;
+      margin-top: 0.6rem;
+      min-height: 1.6rem;
+      font-weight: 500;
+    }
+
+    .feedback.correct {
+      color: #0f7b3e;
+    }
+
+    .feedback.incorrect {
+      color: #b91c1c;
+    }
+
+    .check-btn {
+      background: #0b1e33;
+      color: white;
+      border: none;
+      border-radius: 3rem;
+      padding: 0.9rem 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    .check-btn:hover {
+      background: #1e2f4a;
+    }
+
+    /* assessment area */
+    .assessment-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .quiz-item {
+      background: #f9fcff;
+      border-radius: 1.2rem;
+      padding: 1.2rem 1.4rem;
+      border-left: 6px solid #2563eb;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      color: #0b1e33;
+      font-size: 1.05rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-opt {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #ffffff;
+      padding: 0.7rem 1rem;
+      border-radius: 0.9rem;
+      border: 1px solid #d9e4f5;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .quiz-opt:hover {
+      background: #eef4fe;
+    }
+
+    .quiz-opt input[type="radio"] {
+      accent-color: #2563eb;
+      width: 1.15rem;
+      height: 1.15rem;
+      margin: 0;
+    }
+
+    .quiz-opt label {
+      font-size: 1rem;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .assess-feedback {
+      font-size: 0.95rem;
+      font-weight: 500;
+      min-height: 1.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .assess-feedback.correct {
+      color: #0f7b3e;
+    }
+
+    .assess-feedback.incorrect {
+      color: #b91c1c;
+    }
+
+    .submit-assessment {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 3rem;
+      padding: 1rem 1.2rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      width: 100%;
+      margin-top: 0.5rem;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .submit-assessment:hover {
+      background: #1d4ed8;
+    }
+
+    .submit-assessment:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .score-display {
+      text-align: center;
+      font-weight: 600;
+      margin-top: 0.6rem;
+      background: #e4eefc;
+      padding: 0.7rem;
+      border-radius: 3rem;
+      font-size: 1rem;
+      color: #103a6b;
+    }
+
+    /* navigation bar */
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      border: 2px solid #c8ddfa;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.12);
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+    }
+
+    .nav-link .nav-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* footnotes */
+    .footnote {
+      margin-top: 2.8rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #4b6589;
+      border-top: 1px solid #d0ddef;
+      padding-top: 1.5rem;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.9rem;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-card {
+        padding: 1.5rem 1.2rem 1.8rem;
+      }
+
+      .section-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .option-btn {
+        padding: 0.6rem 1.1rem;
+        font-size: 0.95rem;
+      }
+
+      .op-table,
+      .truth-table {
+        font-size: 0.8rem;
+      }
+
+      .op-table th,
+      .op-table td {
+        padding: 0.45rem 0.5rem;
+      }
+
+      .nav-link {
+        padding: 0.55rem 1.1rem;
+        font-size: 0.9rem;
+      }
+
+      .code-block {
+        font-size: 0.8rem;
+        padding: 0.8rem 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- header -->
+    <div class="header">
+      <h1>⚙️ Operators in Programming</h1>
+      <div class="time-badge">⏱️ 1 hour · 3 sections</div>
+    </div>
+
+    <!-- ============ TOP NAVIGATION LINKS ============ -->
+    <nav class="nav-bar">
+      <a href="index.html" class="nav-link">
+        <span class="nav-icon">🏠</span> Home
+      </a>
+      <a href="variables.html" class="nav-link">
+        <span class="nav-icon">➡️</span> Next: Variables
+      </a>
+    </nav>
+
+    <!-- single column stack: lesson, practice, assessment -->
+    <div class="sections-stack">
+      <!-- ============ LESSON (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">📘</span>
+          <h2>Lesson</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="lesson-text">
+
+          <!-- Section 1: What are operators? -->
+          <div>
+            <h3><span class="num">1</span> What are operators?</h3>
+            <p>
+              An <strong>operator</strong> is a symbol that tells the computer to perform a specific 
+              mathematical, relational, or logical operation on one or more values (called 
+              <em>operands</em>). Think of operators as the "verbs" of programming — they do things 
+              to the data.
+            </p>
+            <div class="concept-box">
+              <strong>💡 Key idea:</strong> In the expression <code style="background:#dbeafe; padding:0.1rem 0.5rem; border-radius:0.4rem;">5 + 3</code>, 
+              the numbers <strong>5</strong> and <strong>3</strong> are the <em>operands</em>, and the 
+              <strong>+</strong> sign is the <em>operator</em>. The operator tells the computer to add 
+              the two numbers together.
+            </div>
+            <p>
+              Operators are grouped into several categories based on what they do. In this lesson, we 
+              will cover the four most important categories:
+            </p>
+            <ul class="rule-list">
+              <li><strong>Arithmetic operators</strong> — perform mathematical calculations</li>
+              <li><strong>Assignment operators</strong> — assign values to variables</li>
+              <li><strong>Comparison operators</strong> — compare two values</li>
+              <li><strong>Logical operators</strong> — combine multiple conditions</li>
+            </ul>
+          </div>
+
+          <!-- Section 2: Arithmetic Operators -->
+          <div>
+            <h3><span class="num">2</span> Arithmetic Operators</h3>
+            <p>
+              Arithmetic operators are used to perform basic mathematical operations. They are the 
+              most familiar type of operator because they work just like the math you already know.
+            </p>
+            <table class="op-table">
+              <thead>
+                <tr>
+                  <th>Operator</th>
+                  <th>Name</th>
+                  <th>Example</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="symbol">+</td>
+                  <td>Addition</td>
+                  <td class="example">10 + 3</td>
+                  <td class="example">13</td>
+                </tr>
+                <tr>
+                  <td class="symbol">−</td>
+                  <td>Subtraction</td>
+                  <td class="example">10 − 3</td>
+                  <td class="example">7</td>
+                </tr>
+                <tr>
+                  <td class="symbol">*</td>
+                  <td>Multiplication</td>
+                  <td class="example">10 * 3</td>
+                  <td class="example">30</td>
+                </tr>
+                <tr>
+                  <td class="symbol">/</td>
+                  <td>Division</td>
+                  <td class="example">10 / 3</td>
+                  <td class="example">3.333…</td>
+                </tr>
+                <tr>
+                  <td class="symbol">%</td>
+                  <td>Modulus (remainder)</td>
+                  <td class="example">10 % 3</td>
+                  <td class="example">1</td>
+                </tr>
+                <tr>
+                  <td class="symbol">**</td>
+                  <td>Exponent (power)</td>
+                  <td class="example">2 ** 3</td>
+                  <td class="example">8</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Example in code</h4>
+            <div class="code-block">
+              <span class="comment"># Arithmetic operators in action</span><br>
+              a <span class="op">=</span> <span class="num-lit">10</span><br>
+              b <span class="op">=</span> <span class="num-lit">3</span><br>
+              <br>
+              <span class="kw">print</span>(a <span class="op">+</span> b) &nbsp; <span class="comment"># 13 (addition)</span><br>
+              <span class="kw">print</span>(a <span class="op">-</span> b) &nbsp; <span class="comment"># 7  (subtraction)</span><br>
+              <span class="kw">print</span>(a <span class="op">*</span> b) &nbsp; <span class="comment"># 30 (multiplication)</span><br>
+              <span class="kw">print</span>(a <span class="op">/</span> b) &nbsp; <span class="comment"># 3.33 (division)</span><br>
+              <span class="kw">print</span>(a <span class="op">%</span> b) &nbsp; <span class="comment"># 1  (remainder)</span><br>
+              <span class="kw">print</span>(a <span class="op">**</span> b) <span class="comment"># 1000 (power)</span>
+            </div>
+
+            <div class="highlight-box">
+              <p><strong>💡 The modulus operator (%)</strong> is especially useful. It returns the 
+              <em>remainder</em> after division. For example, <code>10 % 3</code> equals 1 because 
+              3 goes into 10 three times (9) with 1 left over.</p>
+              <p><strong>Common use:</strong> Checking if a number is even or odd — if <code>n % 2 == 0</code>, 
+              the number is even.</p>
+            </div>
+          </div>
+
+          <!-- Section 3: Assignment Operators -->
+          <div>
+            <h3><span class="num">3</span> Assignment Operators</h3>
+            <p>
+              Assignment operators are used to <strong>assign values to variables</strong>. The most 
+              basic assignment operator is the single equals sign (<code>=</code>), which stores the 
+              value on the right into the variable on the left.
+            </p>
+            <div class="concept-box">
+              <strong>⚠️ Important:</strong> In programming, <code>=</code> does <em>not</em> mean 
+              "equals" in the mathematical sense. It means "<em>assign the value on the right to the 
+              variable on the left</em>." For comparison, we use <code>==</code> (see the next section).
+            </div>
+
+            <table class="op-table">
+              <thead>
+                <tr>
+                  <th>Operator</th>
+                  <th>Name</th>
+                  <th>Example</th>
+                  <th>Equivalent to</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="symbol">=</td>
+                  <td>Assign</td>
+                  <td class="example">x = 5</td>
+                  <td class="example">x = 5</td>
+                </tr>
+                <tr>
+                  <td class="symbol">+=</td>
+                  <td>Add and assign</td>
+                  <td class="example">x += 3</td>
+                  <td class="example">x = x + 3</td>
+                </tr>
+                <tr>
+                  <td class="symbol">−=</td>
+                  <td>Subtract and assign</td>
+                  <td class="example">x −= 3</td>
+                  <td class="example">x = x − 3</td>
+                </tr>
+                <tr>
+                  <td class="symbol">*=</td>
+                  <td>Multiply and assign</td>
+                  <td class="example">x *= 3</td>
+                  <td class="example">x = x * 3</td>
+                </tr>
+                <tr>
+                  <td class="symbol">/=</td>
+                  <td>Divide and assign</td>
+                  <td class="example">x /= 3</td>
+                  <td class="example">x = x / 3</td>
+                </tr>
+                <tr>
+                  <td class="symbol">%=</td>
+                  <td>Modulus and assign</td>
+                  <td class="example">x %= 3</td>
+                  <td class="example">x = x % 3</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Example in code</h4>
+            <div class="code-block">
+              <span class="comment"># Assignment operators in action</span><br>
+              score <span class="op">=</span> <span class="num-lit">100</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment"># assign 100 to score</span><br>
+              score <span class="op">+=</span> <span class="num-lit">50</span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="comment"># score is now 150</span><br>
+              score <span class="op">-=</span> <span class="num-lit">30</span> &nbsp;&nbsp;&nbsp;&nbsp; <span class="comment"># score is now 120</span><br>
+              score <span class="op">*=</span> <span class="num-lit">2</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment"># score is now 240</span><br>
+              score <span class="op">/=</span> <span class="num-lit">4</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="comment"># score is now 60</span><br>
+              <br>
+              <span class="kw">print</span>(score) &nbsp; <span class="comment"># 60</span>
+            </div>
+            <p>
+              The shorthand operators (<code>+=</code>, <code>−=</code>, etc.) are simply a convenient 
+              way to update a variable based on its current value. They save you from writing the 
+              variable name twice.
+            </p>
+          </div>
+
+          <!-- Section 4: Comparison Operators -->
+          <div>
+            <h3><span class="num">4</span> Comparison Operators</h3>
+            <p>
+              Comparison operators are used to <strong>compare two values</strong>. They always return 
+              a <em>Boolean</em> result: either <strong>true</strong> or <strong>false</strong>. These 
+              are essential for making decisions in your code (e.g., in <code>if</code> statements).
+            </p>
+
+            <table class="op-table">
+              <thead>
+                <tr>
+                  <th>Operator</th>
+                  <th>Name</th>
+                  <th>Example</th>
+                  <th>Result</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="symbol">==</td>
+                  <td>Equal to</td>
+                  <td class="example">5 == 5</td>
+                  <td class="example">true</td>
+                </tr>
+                <tr>
+                  <td class="symbol">!=</td>
+                  <td>Not equal to</td>
+                  <td class="example">5 != 3</td>
+                  <td class="example">true</td>
+                </tr>
+                <tr>
+                  <td class="symbol">&gt;</td>
+                  <td>Greater than</td>
+                  <td class="example">5 &gt; 3</td>
+                  <td class="example">true</td>
+                </tr>
+                <tr>
+                  <td class="symbol">&lt;</td>
+                  <td>Less than</td>
+                  <td class="example">5 &lt; 3</td>
+                  <td class="example">false</td>
+                </tr>
+                <tr>
+                  <td class="symbol">&gt;=</td>
+                  <td>Greater than or equal</td>
+                  <td class="example">5 &gt;= 5</td>
+                  <td class="example">true</td>
+                </tr>
+                <tr>
+                  <td class="symbol">&lt;=</td>
+                  <td>Less than or equal</td>
+                  <td class="example">3 &lt;= 5</td>
+                  <td class="example">true</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Example in code</h4>
+            <div class="code-block">
+              <span class="comment"># Comparison operators return True or False</span><br>
+              x <span class="op">=</span> <span class="num-lit">10</span><br>
+              y <span class="op">=</span> <span class="num-lit">20</span><br>
+              <br>
+              <span class="kw">print</span>(x <span class="op">==</span> y) &nbsp; <span class="comment"># False</span><br>
+              <span class="kw">print</span>(x <span class="op">!=</span> y) &nbsp; <span class="comment"># True</span><br>
+              <span class="kw">print</span>(x <span class="op">&lt;</span> y) &nbsp;&nbsp; <span class="comment"># True</span><br>
+              <span class="kw">print</span>(x <span class="op">&gt;</span> y) &nbsp;&nbsp; <span class="comment"># False</span><br>
+              <span class="kw">print</span>(x <span class="op">&lt;=</span> <span class="num-lit">10</span>) <span class="comment"># True</span><br>
+              <span class="kw">print</span>(y <span class="op">&gt;=</span> <span class="num-lit">25</span>) <span class="comment"># False</span>
+            </div>
+
+            <div class="highlight-box">
+              <p><strong>⚠️ Watch out:</strong> <code>=</code> is <em>assignment</em>, while 
+              <code>==</code> is <em>comparison</em>. Mixing them up is one of the most common 
+              beginner mistakes!</p>
+              <p><code>x = 5</code> → puts 5 into x.<br>
+                 <code>x == 5</code> → asks "is x equal to 5?"</p>
+            </div>
+          </div>
+
+          <!-- Section 5: Logical Operators -->
+          <div>
+            <h3><span class="num">5</span> Logical Operators</h3>
+            <p>
+              Logical operators are used to <strong>combine multiple conditions</strong>. They are 
+              the glue that lets you build complex decision-making into your programs. Like comparison 
+              operators, they return <strong>true</strong> or <strong>false</strong>.
+            </p>
+
+            <table class="op-table">
+              <thead>
+                <tr>
+                  <th>Operator</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="symbol">&amp;&amp;</td>
+                  <td>AND</td>
+                  <td>True only if <em>both</em> conditions are true</td>
+                  <td class="example">(5 &gt; 3) &amp;&amp; (2 &lt; 4) → true</td>
+                </tr>
+                <tr>
+                  <td class="symbol">||</td>
+                  <td>OR</td>
+                  <td>True if <em>at least one</em> condition is true</td>
+                  <td class="example">(5 &gt; 3) || (2 &gt; 4) → true</td>
+                </tr>
+                <tr>
+                  <td class="symbol">!</td>
+                  <td>NOT</td>
+                  <td>Reverses the result (true → false, false → true)</td>
+                  <td class="example">!(5 &gt; 3) → false</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Truth tables</h4>
+            <p>The <strong>AND</strong> operator (<code>&amp;&amp;</code>):</p>
+            <table class="truth-table">
+              <thead>
+                <tr>
+                  <th>Condition A</th>
+                  <th>Condition B</th>
+                  <th>A &amp;&amp; B</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="false">false</td><td class="false">false</td><td class="false">false</td></tr>
+                <tr><td class="false">false</td><td class="true">true</td><td class="false">false</td></tr>
+                <tr><td class="true">true</td><td class="false">false</td><td class="false">false</td></tr>
+                <tr><td class="true">true</td><td class="true">true</td><td class="true">true</td></tr>
+              </tbody>
+            </table>
+
+            <p style="margin-top:1rem;">The <strong>OR</strong> operator (<code>||</code>):</p>
+            <table class="truth-table">
+              <thead>
+                <tr>
+                  <th>Condition A</th>
+                  <th>Condition B</th>
+                  <th>A || B</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="false">false</td><td class="false">false</td><td class="false">false</td></tr>
+                <tr><td class="false">false</td><td class="true">true</td><td class="true">true</td></tr>
+                <tr><td class="true">true</td><td class="false">false</td><td class="true">true</td></tr>
+                <tr><td class="true">true</td><td class="true">true</td><td class="true">true</td></tr>
+              </tbody>
+            </table>
+
+            <p style="margin-top:1rem;">The <strong>NOT</strong> operator (<code>!</code>):</p>
+            <table class="truth-table">
+              <thead>
+                <tr>
+                  <th>Condition A</th>
+                  <th>!A</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="true">true</td><td class="false">false</td></tr>
+                <tr><td class="false">false</td><td class="true">true</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Example in code</h4>
+            <div class="code-block">
+              <span class="comment"># Logical operators in action</span><br>
+              age <span class="op">=</span> <span class="num-lit">25</span><br>
+              has_license <span class="op">=</span> <span class="kw">True</span><br>
+              <br>
+              <span class="comment"># AND: both must be true</span><br>
+              can_drive <span class="op">=</span> (age <span class="op">&gt;=</span> <span class="num-lit">18</span>) <span class="op">&amp;&amp;</span> has_license<br>
+              <span class="kw">print</span>(can_drive) &nbsp; <span class="comment"># True</span><br>
+              <br>
+              <span class="comment"># OR: at least one must be true</span><br>
+              is_weekend <span class="op">=</span> <span class="kw">True</span><br>
+              is_holiday <span class="op">=</span> <span class="kw">False</span><br>
+              can_relax <span class="op">=</span> is_weekend <span class="op">||</span> is_holiday<br>
+              <span class="kw">print</span>(can_relax) &nbsp; <span class="comment"># True</span><br>
+              <br>
+              <span class="comment"># NOT: reverses the value</span><br>
+              is_raining <span class="op">=</span> <span class="kw">False</span><br>
+              <span class="kw">print</span>(<span class="op">!</span>is_raining) <span class="comment"># True</span>
+            </div>
+
+            <div class="highlight-box">
+              <p><strong>💡 Practical example:</strong> A website login might check:</p>
+              <p><code>if (username == "admin" &amp;&amp; password == "1234") { ... }</code></p>
+              <p>Both conditions must be true for the login to succeed. If you used <code>||</code> 
+              instead, the login would succeed if <em>either</em> the username or password matched — 
+              which would be a security disaster!</p>
+            </div>
+          </div>
+
+          <!-- Section 6: Operator Precedence -->
+          <div>
+            <h3><span class="num">6</span> Operator Precedence</h3>
+            <p>
+              When an expression contains multiple operators, the computer needs to know which one 
+              to evaluate first. This is called <strong>operator precedence</strong>. It works much 
+              like PEMDAS in mathematics.
+            </p>
+            <div class="highlight-box">
+              <p><strong>Order of precedence (highest to lowest):</strong></p>
+              <p>1. <strong>Parentheses</strong> <code>( )</code></p>
+              <p>2. <strong>Exponent</strong> <code>**</code></p>
+              <p>3. <strong>Multiplication, Division, Modulus</strong> <code>* / %</code></p>
+              <p>4. <strong>Addition, Subtraction</strong> <code>+ −</code></p>
+              <p>5. <strong>Comparison</strong> <code>== != &gt; &lt; &gt;= &lt;=</code></p>
+              <p>6. <strong>Logical NOT</strong> <code>!</code></p>
+              <p>7. <strong>Logical AND</strong> <code>&amp;&amp;</code></p>
+              <p>8. <strong>Logical OR</strong> <code>||</code></p>
+              <p>9. <strong>Assignment</strong> <code>= += −= etc.</code></p>
+            </div>
+            <div class="code-block">
+              <span class="comment"># Precedence example</span><br>
+              result <span class="op">=</span> <span class="num-lit">2</span> <span class="op">+</span> <span class="num-lit">3</span> <span class="op">*</span> <span class="num-lit">4</span><br>
+              <span class="comment"># Multiplication first: 3 * 4 = 12</span><br>
+              <span class="comment"># Then addition: 2 + 12 = 14</span><br>
+              <span class="kw">print</span>(result) &nbsp; <span class="comment"># 14</span><br>
+              <br>
+              <span class="comment"># Use parentheses to change the order</span><br>
+              result2 <span class="op">=</span> (<span class="num-lit">2</span> <span class="op">+</span> <span class="num-lit">3</span>) <span class="op">*</span> <span class="num-lit">4</span><br>
+              <span class="kw">print</span>(result2) <span class="comment"># 20</span>
+            </div>
+            <p>
+              <strong>Best practice:</strong> When in doubt, use parentheses. They make your code 
+              clearer and prevent unexpected results.
+            </p>
+          </div>
+
+          <!-- Section 7: Key facts -->
+          <div>
+            <h3><span class="num">7</span> Key facts to remember</h3>
+            <div class="highlight-box">
+              <p>• <strong>Arithmetic operators</strong>: <code>+ − * / % **</code> → do math.</p>
+              <p>• <strong>Assignment operators</strong>: <code>= += −= *= /= %=</code> → store and update values.</p>
+              <p>• <strong>Comparison operators</strong>: <code>== != &gt; &lt; &gt;= &lt;=</code> → return true or false.</p>
+              <p>• <strong>Logical operators</strong>: <code>&amp;&amp; || !</code> → combine conditions.</p>
+              <p style="margin-top:0.6rem;">• <code>=</code> is assignment, <code>==</code> is comparison — don't confuse them!</p>
+              <p>• <code>%</code> returns the remainder of division (e.g., <code>10 % 3 = 1</code>).</p>
+              <p>• <code>&amp;&amp;</code> requires <em>both</em> conditions to be true.</p>
+              <p>• <code>||</code> requires <em>at least one</em> condition to be true.</p>
+              <p>• <code>!</code> reverses a Boolean value.</p>
+              <p>• Use parentheses to control the order of evaluation.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ PRACTICE (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">✏️</span>
+          <h2>Practice</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="practice-area" id="practiceArea">
+          <!-- practice question 1 -->
+          <div class="question-block" data-q="1">
+            <div class="question-label">
+              <span>1. What is the result of this expression?</span>
+              <span class="badge">arithmetic</span>
+            </div>
+            <div class="code-question">
+              <span class="num-lit">10</span> <span class="op">%</span> <span class="num-lit">3</span>
+            </div>
+            <div class="options">
+              <button class="option-btn" data-opt="1">1</button>
+              <button class="option-btn" data-opt="3">3</button>
+              <button class="option-btn" data-opt="3.33">3.33</button>
+            </div>
+            <div class="feedback" id="fb1"></div>
+          </div>
+
+          <!-- practice question 2 -->
+          <div class="question-block" data-q="2">
+            <div class="question-label">
+              <span>2. What does this expression evaluate to?</span>
+              <span class="badge">logical</span>
+            </div>
+            <div class="code-question">
+              (<span class="num-lit">5</span> <span class="op">&gt;</span> <span class="num-lit">3</span>) <span class="op">&amp;&amp;</span> (<span class="num-lit">2</span> <span class="op">&gt;</span> <span class="num-lit">4</span>)
+            </div>
+            <div class="options">
+              <button class="option-btn" data-opt="true">true</button>
+              <button class="option-btn" data-opt="false">false</button>
+            </div>
+            <div class="feedback" id="fb2"></div>
+          </div>
+
+          <button class="check-btn" id="checkPracticeBtn">✓ Check practice answers</button>
+          <div style="font-size:0.95rem; color:#1e4d8c; text-align:center; margin-top:0.3rem; font-weight:500;">
+            <span id="practiceScore">0 / 2 correct</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ ASSESSMENT (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">📝</span>
+          <h2>Assessment</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="assessment-area" id="assessmentArea">
+          <!-- Q1 -->
+          <div class="quiz-item" data-quiz="1">
+            <div class="quiz-question">1. Which operator is used for <em>comparison</em> (not assignment)?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q1" value="A"> A) <code>=</code></label>
+              <label class="quiz-opt"><input type="radio" name="q1" value="B"> B) <code>==</code></label>
+              <label class="quiz-opt"><input type="radio" name="q1" value="C"> C) <code>+=</code></label>
+            </div>
+            <div class="assess-feedback" id="af1"></div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="quiz-item" data-quiz="2">
+            <div class="quiz-question">2. What is the value of <code>x</code> after this code runs?<br>
+              <code style="background:#e2e8f0; padding:0.2rem 0.5rem; border-radius:0.4rem; display:inline-block; margin-top:0.4rem;">x = 10; x += 5; x *= 2;</code>
+            </div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q2" value="A"> A) 20</label>
+              <label class="quiz-opt"><input type="radio" name="q2" value="B"> B) 30</label>
+              <label class="quiz-opt"><input type="radio" name="q2" value="C"> C) 25</label>
+            </div>
+            <div class="assess-feedback" id="af2"></div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="quiz-item" data-quiz="3">
+            <div class="quiz-question">3. Which logical operator returns true only when <u>both</u> conditions are true?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q3" value="A"> A) <code>||</code> (OR)</label>
+              <label class="quiz-opt"><input type="radio" name="q3" value="B"> B) <code>&amp;&amp;</code> (AND)</label>
+              <label class="quiz-opt"><input type="radio" name="q3" value="C"> C) <code>!</code> (NOT)</label>
+            </div>
+            <div class="assess-feedback" id="af3"></div>
+          </div>
+
+          <button class="submit-assessment" id="submitAssessment">📥 Submit assessment</button>
+          <div class="score-display" id="assessmentScore">Score: — / 3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BOTTOM NAVIGATION LINKS ============ -->
+    <nav class="nav-bar" style="margin-top: 2.5rem; margin-bottom: 0;">
+      <a href="index.html" class="nav-link">
+        <span class="nav-icon">🏠</span> Home
+      </a>
+      <a href="variables.html" class="nav-link">
+        <span class="nav-icon">➡️</span> Next: Variables
+      </a>
+    </nav>
+
+    <div class="footnote">
+      ⏳ total time: 60 minutes • lesson 20' • practice 20' • assessment 20' • operators in programming
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- PRACTICE LOGIC ----------
+      // Practice question 1: 10 % 3 = 1, correct data-opt = "1"
+      // Practice question 2: (5 > 3) && (2 > 4) → true && false → false, correct data-opt = "false"
+      const practiceCorrectMap = {
+        1: "1",
+        2: "false"
+      };
+
+      // store selected options for practice
+      const selectedPractice = {
+        1: null,
+        2: null
+      };
+
+      // attach click handlers to practice option buttons
+      document.querySelectorAll('.question-block').forEach(block => {
+        const qNum = block.dataset.q;
+        const optionBtns = block.querySelectorAll('.option-btn');
+        optionBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            // remove selected class from siblings
+            optionBtns.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            // store selected value (data-opt attribute)
+            selectedPractice[qNum] = btn.dataset.opt;
+            // clear feedback when a new selection is made
+            const fb = document.getElementById(`fb${qNum}`);
+            if (fb) fb.textContent = '';
+          });
+        });
+      });
+
+      // check practice answers
+      const checkPracticeBtn = document.getElementById('checkPracticeBtn');
+      const practiceScoreSpan = document.getElementById('practiceScore');
+
+      function evaluatePractice() {
+        let correctCount = 0;
+
+        // Question 1
+        const fb1 = document.getElementById('fb1');
+        const q1Selected = selectedPractice[1];
+        if (q1Selected === practiceCorrectMap[1]) {
+          fb1.textContent = '✓ Correct! 10 % 3 = 1 because 3 goes into 10 three times (9) with 1 left over.';
+          fb1.className = 'feedback correct';
+          correctCount++;
+        } else {
+          fb1.textContent = q1Selected ? '✗ Incorrect. The % operator returns the remainder.' : '⚠️ Please select an answer.';
+          fb1.className = 'feedback incorrect';
+        }
+
+        // Question 2
+        const fb2 = document.getElementById('fb2');
+        const q2Selected = selectedPractice[2];
+        if (q2Selected === practiceCorrectMap[2]) {
+          fb2.textContent = '✓ Correct! (5 > 3) is true, but (2 > 4) is false. true && false = false.';
+          fb2.className = 'feedback correct';
+          correctCount++;
+        } else {
+          fb2.textContent = q2Selected ? '✗ Incorrect. AND requires both conditions to be true.' : '⚠️ Please select an answer.';
+          fb2.className = 'feedback incorrect';
+        }
+
+        practiceScoreSpan.textContent = `${correctCount} / 2 correct`;
+        return correctCount;
+      }
+
+      checkPracticeBtn.addEventListener('click', evaluatePractice);
+
+      // ---------- ASSESSMENT LOGIC ----------
+      const submitAssessment = document.getElementById('submitAssessment');
+      const assessmentScoreDiv = document.getElementById('assessmentScore');
+
+      // correct answers for assessment
+      const assessmentKey = {
+        q1: 'B',  // == is comparison
+        q2: 'B',  // 10 + 5 = 15, 15 * 2 = 30
+        q3: 'B'   // && (AND)
+      };
+
+      function resetAssessmentFeedback() {
+        for (let i = 1; i <= 3; i++) {
+          const fb = document.getElementById(`af${i}`);
+          if (fb) {
+            fb.textContent = '';
+            fb.className = 'assess-feedback';
+          }
+        }
+      }
+
+      // clear feedback when user selects a new radio option
+      document.querySelectorAll('.quiz-opt input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          const name = e.target.name; // q1, q2, q3
+          const qNum = name.charAt(1);
+          const fb = document.getElementById(`af${qNum}`);
+          if (fb) {
+            fb.textContent = '';
+            fb.className = 'assess-feedback';
+          }
+        });
+      });
+
+      submitAssessment.addEventListener('click', () => {
+        // reset any previous feedback
+        resetAssessmentFeedback();
+
+        let correctCount = 0;
+        let allAnswered = true;
+
+        // Q1
+        const q1Selected = document.querySelector('input[name="q1"]:checked');
+        const af1 = document.getElementById('af1');
+        if (!q1Selected) {
+          af1.textContent = '⚠️ Please select an answer.';
+          af1.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q1Selected.value === assessmentKey.q1) {
+            af1.textContent = '✓ Correct! == compares two values, while = assigns a value.';
+            af1.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af1.textContent = '✗ Incorrect. = is assignment, == is comparison.';
+            af1.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // Q2
+        const q2Selected = document.querySelector('input[name="q2"]:checked');
+        const af2 = document.getElementById('af2');
+        if (!q2Selected) {
+          af2.textContent = '⚠️ Please select an answer.';
+          af2.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q2Selected.value === assessmentKey.q2) {
+            af2.textContent = '✓ Correct! x = 10, then x += 5 → 15, then x *= 2 → 30.';
+            af2.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af2.textContent = '✗ Incorrect. Step by step: 10 + 5 = 15, then 15 × 2 = 30.';
+            af2.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // Q3
+        const q3Selected = document.querySelector('input[name="q3"]:checked');
+        const af3 = document.getElementById('af3');
+        if (!q3Selected) {
+          af3.textContent = '⚠️ Please select an answer.';
+          af3.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q3Selected.value === assessmentKey.q3) {
+            af3.textContent = '✓ Correct! && (AND) requires both conditions to be true.';
+            af3.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af3.textContent = '✗ Incorrect. || requires only one, ! reverses. && requires both.';
+            af3.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // update score display
+        assessmentScoreDiv.textContent = `Score: ${correctCount} / 3`;
+        if (!allAnswered) {
+          assessmentScoreDiv.textContent += ' (answer all questions)';
+        }
+      });
+
+      // clear practice selections on load (already null)
+    })();
+  </script>
+</body>
+</html>

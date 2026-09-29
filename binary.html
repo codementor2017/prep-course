@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Numbers & The Binary System · 1-hour lesson</title>
+  <style>
+    /* global reset & typography */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: #f6f9ff;
+      color: #0b1e33;
+      padding: 2rem 1.5rem;
+      line-height: 1.65;
+    }
+
+    .lesson-container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* header */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #0b1e33, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      display: inline-block;
+      border-bottom: 4px solid #3b82f6;
+      padding-bottom: 0.4rem;
+    }
+
+    .header .time-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 600;
+      padding: 0.35rem 1.3rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    }
+
+    /* single column stack */
+    .sections-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* card style */
+    .section-card {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      box-shadow: 0 15px 30px -10px rgba(0, 35, 80, 0.1), 0 2px 10px rgba(0, 0, 0, 0.02);
+      padding: 2rem 2rem 2.3rem;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e2ebf6;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .section-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 35px -12px rgba(0, 47, 112, 0.15);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.6rem;
+      border-bottom: 3px dashed #b9d3f0;
+      padding-bottom: 0.9rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0b2b5c;
+    }
+
+    .section-header .time {
+      margin-left: auto;
+      background: #e8f0fe;
+      border-radius: 30px;
+      padding: 0.3rem 1.1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e4d8c;
+      white-space: nowrap;
+    }
+
+    .icon {
+      font-size: 2.1rem;
+      line-height: 1;
+    }
+
+    /* lesson content */
+    .lesson-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .lesson-text h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2b5c;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lesson-text h3 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #2563eb;
+      color: white;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .lesson-text p {
+      font-size: 1rem;
+      color: #1e293b;
+      margin-bottom: 0.6rem;
+    }
+
+    .concept-box {
+      background: #eef4ff;
+      border-left: 6px solid #2563eb;
+      padding: 1.2rem 1.4rem;
+      border-radius: 1rem;
+      font-size: 1rem;
+      color: #0a1e3c;
+    }
+
+    .binary-example {
+      background: #0b1e33;
+      color: #e0edff;
+      border-radius: 1.2rem;
+      padding: 1.2rem 1.2rem;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      text-align: center;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .binary-digit {
+      background: #1e3a8a;
+      color: white;
+      padding: 0.2rem 0.7rem;
+      border-radius: 0.6rem;
+      font-weight: 700;
+    }
+
+    .place-values {
+      display: flex;
+      justify-content: center;
+      gap: 1.4rem;
+      font-size: 1rem;
+      color: #2660b0;
+      font-weight: 600;
+      margin-top: -0.2rem;
+      letter-spacing: 1px;
+    }
+
+    .rule-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 0.2rem;
+    }
+
+    .rule-list li {
+      display: flex;
+      gap: 0.7rem;
+      align-items: baseline;
+      font-size: 1rem;
+    }
+
+    .rule-list li::before {
+      content: "▹";
+      color: #2563eb;
+      font-weight: bold;
+      font-size: 1.3rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .highlight-box {
+      background: #e6f0ff;
+      border-radius: 1rem;
+      padding: 1.2rem 1.4rem;
+      font-size: 0.98rem;
+      border: 1px solid #c8ddfa;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0.4rem;
+    }
+
+    .highlight-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ASCII highlight box */
+    .ascii-box {
+      background: linear-gradient(135deg, #0b1e33, #1e3a8a);
+      color: #e0edff;
+      border-radius: 1.2rem;
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 30, 80, 0.25);
+    }
+
+    .ascii-box h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #7dd3fc;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ascii-box p {
+      color: #cbd5e1;
+      font-size: 0.97rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .ascii-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 0.9rem;
+      padding: 1rem 1.2rem;
+      font-family: 'Fira Code', 'Courier New', monospace;
+    }
+
+    .ascii-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+    }
+
+    .ascii-char {
+      background: #2563eb;
+      color: white;
+      font-weight: 700;
+      width: 2.2rem;
+      height: 2.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.6rem;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .ascii-arrow {
+      color: #7dd3fc;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .ascii-code {
+      color: #fbbf24;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .ascii-decimal {
+      color: #7dd3fc;
+      font-weight: 600;
+    }
+
+    /* table for conversions */
+    .conversion-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+      font-size: 0.95rem;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .conversion-table th {
+      background: #2563eb;
+      color: white;
+      padding: 0.7rem 0.9rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .conversion-table td {
+      padding: 0.6rem 0.9rem;
+      text-align: center;
+      border-bottom: 1px solid #e2ebf6;
+      background: #ffffff;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 1rem;
+    }
+
+    .conversion-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .conversion-table tr:nth-child(even) td {
+      background: #f7faff;
+    }
+
+    .conversion-table td.dec {
+      font-weight: 700;
+      color: #0b2b5c;
+    }
+
+    /* ASCII reference table */
+    .ascii-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+      font-size: 0.9rem;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .ascii-table th {
+      background: #1e3a8a;
+      color: white;
+      padding: 0.6rem 0.7rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .ascii-table td {
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+      border-bottom: 1px solid #e2ebf6;
+      background: #ffffff;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+
+    .ascii-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .ascii-table tr:nth-child(even) td {
+      background: #f7faff;
+    }
+
+    .ascii-table td.char {
+      font-weight: 700;
+      color: #2563eb;
+      font-size: 1.05rem;
+    }
+
+    /* practice content */
+    .practice-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .question-block {
+      background: #f9fcff;
+      padding: 1.2rem 1.4rem;
+      border-radius: 1.2rem;
+      border: 1px solid #d4e2fc;
+    }
+
+    .question-label {
+      font-weight: 600;
+      color: #123a6b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+    }
+
+    .badge {
+      background: #dbeafe;
+      border-radius: 30px;
+      padding: 0.15rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1e40af;
+    }
+
+    .binary-sequence {
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 1.5rem;
+      letter-spacing: 5px;
+      background: #ffffff;
+      padding: 0.7rem 1rem;
+      border-radius: 0.9rem;
+      border: 1px solid #b9cef0;
+      text-align: center;
+      font-weight: 700;
+      color: #0b1e40;
+      margin: 0.4rem 0 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .option-btn {
+      background: #eaf0fa;
+      border: none;
+      border-radius: 2.5rem;
+      padding: 0.7rem 1.6rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #0b1e33;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      flex: 1 0 auto;
+    }
+
+    .option-btn:hover {
+      background: #cfdef5;
+    }
+
+    .option-btn.selected {
+      background: #2563eb;
+      color: white;
+      border-color: #1e40af;
+    }
+
+    .feedback {
+      font-size: 0.95rem;
+      margin-top: 0.6rem;
+      min-height: 1.6rem;
+      font-weight: 500;
+    }
+
+    .feedback.correct {
+      color: #0f7b3e;
+    }
+
+    .feedback.incorrect {
+      color: #b91c1c;
+    }
+
+    .check-btn {
+      background: #0b1e33;
+      color: white;
+      border: none;
+      border-radius: 3rem;
+      padding: 0.9rem 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    .check-btn:hover {
+      background: #1e2f4a;
+    }
+
+    /* assessment area */
+    .assessment-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .quiz-item {
+      background: #f9fcff;
+      border-radius: 1.2rem;
+      padding: 1.2rem 1.4rem;
+      border-left: 6px solid #2563eb;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      color: #0b1e33;
+      font-size: 1.05rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-opt {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #ffffff;
+      padding: 0.7rem 1rem;
+      border-radius: 0.9rem;
+      border: 1px solid #d9e4f5;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .quiz-opt:hover {
+      background: #eef4fe;
+    }
+
+    .quiz-opt input[type="radio"] {
+      accent-color: #2563eb;
+      width: 1.15rem;
+      height: 1.15rem;
+      margin: 0;
+    }
+
+    .quiz-opt label {
+      font-size: 1rem;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .assess-feedback {
+      font-size: 0.95rem;
+      font-weight: 500;
+      min-height: 1.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .assess-feedback.correct {
+      color: #0f7b3e;
+    }
+
+    .assess-feedback.incorrect {
+      color: #b91c1c;
+    }
+
+    .submit-assessment {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 3rem;
+      padding: 1rem 1.2rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      width: 100%;
+      margin-top: 0.5rem;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .submit-assessment:hover {
+      background: #1d4ed8;
+    }
+
+    .submit-assessment:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .score-display {
+      text-align: center;
+      font-weight: 600;
+      margin-top: 0.6rem;
+      background: #e4eefc;
+      padding: 0.7rem;
+      border-radius: 3rem;
+      font-size: 1rem;
+      color: #103a6b;
+    }
+
+    /* navigation bar */
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      border: 2px solid #c8ddfa;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.12);
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+    }
+
+    .nav-link .nav-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* footnotes */
+    .footnote {
+      margin-top: 2.8rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #4b6589;
+      border-top: 1px solid #d0ddef;
+      padding-top: 1.5rem;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.9rem;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-card {
+        padding: 1.5rem 1.2rem 1.8rem;
+      }
+
+      .section-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .binary-example {
+        font-size: 1.1rem;
+      }
+
+      .binary-sequence {
+        font-size: 1.25rem;
+        letter-spacing: 3px;
+      }
+
+      .option-btn {
+        padding: 0.6rem 1.1rem;
+        font-size: 0.95rem;
+      }
+
+      .conversion-table,
+      .ascii-table {
+        font-size: 0.8rem;
+      }
+
+      .conversion-table th,
+      .conversion-table td,
+      .ascii-table th,
+      .ascii-table td {
+        padding: 0.45rem 0.4rem;
+      }
+
+      .nav-link {
+        padding: 0.55rem 1.1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- header -->
+    <div class="header">
+      <h1>🔢 Binary Numbers & The Binary System</h1>
+      <div class="time-badge">⏱️ 1 hour · 3 sections</div>
+    </div>
+
+    <!-- ============ TOP NAVIGATION LINKS ============ -->
+    <nav class="nav-bar">
+      <a href="index.html" class="nav-link">
+        <span class="nav-icon">🏠</span> Home
+      </a>
+      <a href="operators.html" class="nav-link">
+        <span class="nav-icon">➡️</span> Next: Operators
+      </a>
+    </nav>
+
+    <!-- single column stack: lesson, practice, assessment -->
+    <div class="sections-stack">
+      <!-- ============ LESSON (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">📘</span>
+          <h2>Lesson</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="lesson-text">
+
+          <!-- Section 1: What is binary? -->
+          <div>
+            <h3><span class="num">1</span> What is the binary system?</h3>
+            <p>
+              The <strong>binary system</strong> is a <em>base‑2</em> number system. Unlike the decimal system 
+              (base‑10) that we use every day — which relies on ten digits (0–9) — binary uses only 
+              <strong>two digits: 0 and 1</strong>.
+            </p>
+            <p>
+              Each digit in a binary number is called a <strong>bit</strong> (short for <em>binary digit</em>). 
+              The binary system is the foundation of all modern computers and digital electronics, because 
+              a bit can be easily represented by two physical states: on/off, high/low voltage, or magnetized/
+              demagnetized.
+            </p>
+            <div class="concept-box">
+              <strong>💡 Key idea:</strong> In binary, every position represents a power of 2. 
+              That's why it is called a <em>positional</em> or <em>place‑value</em> system — the value of a digit 
+              depends on its position within the number.
+            </div>
+          </div>
+
+          <!-- Section 2: Place values -->
+          <div>
+            <h3><span class="num">2</span> Place values — powers of 2</h3>
+            <p>
+              In the decimal system, each position is a power of 10: ones, tens, hundreds, thousands, etc. 
+              In binary, each position is a power of 2. Starting from the right (least significant bit), the 
+              place values are:
+            </p>
+            <div style="display:flex; justify-content:center; gap:0.9rem; flex-wrap:wrap; margin:0.8rem 0;">
+              <div style="text-align:center;">
+                <div style="background:#2563eb; color:white; padding:0.3rem 0.9rem; border-radius:0.6rem; font-weight:700; font-family:monospace;">2³</div>
+                <div style="font-size:0.85rem; color:#4b6589; margin-top:0.2rem;">8</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="background:#3b82f6; color:white; padding:0.3rem 0.9rem; border-radius:0.6rem; font-weight:700; font-family:monospace;">2²</div>
+                <div style="font-size:0.85rem; color:#4b6589; margin-top:0.2rem;">4</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="background:#60a5fa; color:white; padding:0.3rem 0.9rem; border-radius:0.6rem; font-weight:700; font-family:monospace;">2¹</div>
+                <div style="font-size:0.85rem; color:#4b6589; margin-top:0.2rem;">2</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="background:#93c5fd; color:#0b1e33; padding:0.3rem 0.9rem; border-radius:0.6rem; font-weight:700; font-family:monospace;">2⁰</div>
+                <div style="font-size:0.85rem; color:#4b6589; margin-top:0.2rem;">1</div>
+              </div>
+            </div>
+            <p>
+              So a 4‑bit binary number has place values 8, 4, 2, and 1. For example, the binary number 
+              <code style="background:#e2e8f0; padding:0.1rem 0.5rem; border-radius:0.4rem; font-weight:700;">1011</code> 
+              means:
+            </p>
+            <div class="binary-example">
+              <span class="binary-digit">1</span>
+              <span class="binary-digit">0</span>
+              <span class="binary-digit">1</span>
+              <span class="binary-digit">1</span>
+            </div>
+            <div class="place-values">
+              <span>8</span> <span>4</span> <span>2</span> <span>1</span>
+            </div>
+            <div style="text-align:center; font-size:1rem; color:#1e4d8c; font-weight:600; margin-top:0.4rem;">
+              (1×8) + (0×4) + (1×2) + (1×1) = 8 + 0 + 2 + 1 = <span style="color:#2563eb; font-size:1.15rem;">11</span>
+            </div>
+          </div>
+
+          <!-- Section 3: Counting in binary -->
+          <div>
+            <h3><span class="num">3</span> Counting in binary</h3>
+            <p>
+              Counting in binary works exactly like counting in decimal, but you run out of digits much faster. 
+              After <strong>1</strong>, you cannot go to <strong>2</strong> — you must roll over to the next 
+              position. Here is how you count from 0 to 15 using 4 bits:
+            </p>
+            <table class="conversion-table">
+              <thead>
+                <tr>
+                  <th>Decimal</th>
+                  <th>Binary</th>
+                  <th>Decimal</th>
+                  <th>Binary</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="dec">0</td><td>0000</td><td class="dec">8</td><td>1000</td></tr>
+                <tr><td class="dec">1</td><td>0001</td><td class="dec">9</td><td>1001</td></tr>
+                <tr><td class="dec">2</td><td>0010</td><td class="dec">10</td><td>1010</td></tr>
+                <tr><td class="dec">3</td><td>0011</td><td class="dec">11</td><td>1011</td></tr>
+                <tr><td class="dec">4</td><td>0100</td><td class="dec">12</td><td>1100</td></tr>
+                <tr><td class="dec">5</td><td>0101</td><td class="dec">13</td><td>1101</td></tr>
+                <tr><td class="dec">6</td><td>0110</td><td class="dec">14</td><td>1110</td></tr>
+                <tr><td class="dec">7</td><td>0111</td><td class="dec">15</td><td>1111</td></tr>
+              </tbody>
+            </table>
+            <p>
+              Notice the pattern: the least significant bit (rightmost) alternates 0, 1, 0, 1…; the next bit 
+              alternates every two numbers, then every four, then every eight — each bit toggles at twice the 
+              rate of the one to its left. This is a direct consequence of the powers‑of‑2 place values.
+            </p>
+          </div>
+
+          <!-- Section 4: Converting binary to decimal -->
+          <div>
+            <h3><span class="num">4</span> Converting binary → decimal</h3>
+            <p>
+              To convert a binary number to decimal, multiply each bit by its place value (power of 2) and 
+              add the results. Let's walk through a 6‑bit example:
+            </p>
+            <div style="background:#f0f7ff; border-radius:1rem; padding:1rem 1.3rem; font-family:monospace; font-size:1.1rem; text-align:center; margin:0.6rem 0;">
+              <strong>1 0 1 1 0 1</strong>
+            </div>
+            <div class="place-values" style="gap:1rem; font-size:0.9rem;">
+              <span>32</span> <span>16</span> <span>8</span> <span>4</span> <span>2</span> <span>1</span>
+            </div>
+            <div style="text-align:center; font-size:0.95rem; color:#1e4d8c; font-weight:500; margin-top:0.3rem;">
+              (1×32) + (0×16) + (1×8) + (1×4) + (0×2) + (1×1) = 32 + 0 + 8 + 4 + 0 + 1 = <strong style="color:#2563eb;">45</strong>
+            </div>
+            <p>
+              So <code style="background:#e2e8f0; padding:0.1rem 0.5rem; border-radius:0.4rem;">101101₂ = 45₁₀</code>. 
+              The subscript ₂ indicates binary, and ₁₀ indicates decimal.
+            </p>
+          </div>
+
+          <!-- Section 5: Converting decimal to binary -->
+          <div>
+            <h3><span class="num">5</span> Converting decimal → binary</h3>
+            <p>
+              There are two common methods. The most reliable is <strong>repeated division by 2</strong>:
+            </p>
+            <ol style="list-style:none; display:flex; flex-direction:column; gap:0.6rem; margin:0.6rem 0 0.6rem 0.4rem;">
+              <li style="display:flex; gap:0.6rem;"><span style="font-weight:700; color:#2563eb;">1.</span> Divide the decimal number by 2.</li>
+              <li style="display:flex; gap:0.6rem;"><span style="font-weight:700; color:#2563eb;">2.</span> Record the remainder (0 or 1).</li>
+              <li style="display:flex; gap:0.6rem;"><span style="font-weight:700; color:#2563eb;">3.</span> Divide the quotient by 2 again.</li>
+              <li style="display:flex; gap:0.6rem;"><span style="font-weight:700; color:#2563eb;">4.</span> Repeat until the quotient is 0.</li>
+              <li style="display:flex; gap:0.6rem;"><span style="font-weight:700; color:#2563eb;">5.</span> Read the remainders <strong>from bottom to top</strong>.</li>
+            </ol>
+            <p style="margin-top:0.5rem;">Let's convert decimal <strong>26</strong> to binary:</p>
+            <div style="background:#f7faff; border:1px solid #d9e4f5; border-radius:1rem; padding:1rem 1.3rem; font-family:monospace; font-size:0.95rem; line-height:2;">
+              <div>26 ÷ 2 = 13 &nbsp; remainder <strong style="color:#2563eb;">0</strong> &nbsp; ← least significant</div>
+              <div>13 ÷ 2 = 6 &nbsp;&nbsp; remainder <strong style="color:#2563eb;">1</strong></div>
+              <div>6 &nbsp;÷ 2 = 3 &nbsp;&nbsp; remainder <strong style="color:#2563eb;">0</strong></div>
+              <div>3 &nbsp;÷ 2 = 1 &nbsp;&nbsp; remainder <strong style="color:#2563eb;">1</strong></div>
+              <div>1 &nbsp;÷ 2 = 0 &nbsp;&nbsp; remainder <strong style="color:#2563eb;">1</strong> &nbsp; ← most significant</div>
+            </div>
+            <p style="margin-top:0.6rem;">
+              Reading the remainders from bottom to top: <strong>1 1 0 1 0</strong>. So 
+              <code style="background:#e2e8f0; padding:0.1rem 0.5rem; border-radius:0.4rem;">26₁₀ = 11010₂</code>.
+            </p>
+          </div>
+
+          <!-- Section 6: ASCII — real-world application -->
+          <div>
+            <h3><span class="num">6</span> 🌍 Real‑world application: ASCII</h3>
+            <p>
+              So far we've used binary to represent <em>numbers</em>. But how does a computer store 
+              <strong>text</strong> — letters, symbols, emojis? The answer is <strong>ASCII</strong> 
+              (American Standard Code for Information Interchange).
+            </p>
+            <p>
+              ASCII assigns a unique number (and therefore a unique binary pattern) to every character: 
+              letters A–Z, a–z, digits 0–9, punctuation, and control codes. Each character is stored 
+              using <strong>7 or 8 bits</strong> (a byte).
+            </p>
+
+            <div class="ascii-box">
+              <h4>🔤 ASCII in action</h4>
+              <p>Every character you type is stored as a binary number. Here are a few examples:</p>
+              <div class="ascii-demo">
+                <div class="ascii-row">
+                  <span class="ascii-char">A</span>
+                  <span class="ascii-arrow">→</span>
+                  <span class="ascii-decimal">decimal 65</span>
+                  <span class="ascii-arrow">→</span>
+                  <span class="ascii-code">01000001</span>
+                </div>
+                <div class="ascii-row">
+                  <span class="ascii-char">B</span>
+                  <span class="ascii-arrow">→</span>
+                  <span class="ascii-decimal">decimal 66</span>
+                  <span class="ascii-arrow">→</span>
+                  <span class="ascii-code">01000010</span>
+                </div>
+                <div class="ascii-row">
+                  <span class="ascii-char">a</span>
+                  <span class="ascii-arrow">→</span>
+                  <span class="ascii-decimal">decimal 97</span>
+                  <span class="ascii-arrow">→</span>
+                  <span class="ascii-code">01100001</span>
+                </div>
+                <div class="ascii-row">
+                  <span class="ascii-char">!</span>
+                  <span class="ascii-arrow">→</span>
+                  <span class="ascii-decimal">decimal 33</span>
+                  <span class="ascii-arrow">→</span>
+                  <span class="ascii-code">00100001</span>
+                </div>
+              </div>
+            </div>
+
+            <p style="margin-top:1rem;">
+              Let's decode the word <strong>"Hi"</strong> using ASCII:
+            </p>
+            <div style="background:#f0f7ff; border-radius:1rem; padding:1rem 1.3rem; font-family:monospace; font-size:0.95rem; margin:0.6rem 0;">
+              <div style="margin-bottom:0.4rem;">
+                <strong>H</strong> = 72 = <span style="color:#2563eb; font-weight:700;">0 1 0 0 1 0 0 0</span>
+              </div>
+              <div>
+                <strong>i</strong> = 105 = <span style="color:#2563eb; font-weight:700;">0 1 1 0 1 0 0 1</span>
+              </div>
+            </div>
+            <p>
+              When you type "Hi" on a keyboard, the computer stores these two 8‑bit binary patterns. 
+              When you open a text file, the computer reads the binary and converts it back to characters 
+              using the ASCII table.
+            </p>
+
+            <p style="margin-top:0.8rem;"><strong>Common ASCII values to know:</strong></p>
+            <table class="ascii-table">
+              <thead>
+                <tr>
+                  <th>Character</th>
+                  <th>Decimal</th>
+                  <th>Binary (8‑bit)</th>
+                  <th>Character</th>
+                  <th>Decimal</th>
+                  <th>Binary (8‑bit)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="char">A</td><td>65</td><td>01000001</td>
+                  <td class="char">a</td><td>97</td><td>01100001</td>
+                </tr>
+                <tr>
+                  <td class="char">B</td><td>66</td><td>01000010</td>
+                  <td class="char">b</td><td>98</td><td>01100010</td>
+                </tr>
+                <tr>
+                  <td class="char">C</td><td>67</td><td>01000011</td>
+                  <td class="char">c</td><td>99</td><td>01100011</td>
+                </tr>
+                <tr>
+                  <td class="char">0</td><td>48</td><td>00110000</td>
+                  <td class="char">1</td><td>49</td><td>00110001</td>
+                </tr>
+                <tr>
+                  <td class="char">space</td><td>32</td><td>00100000</td>
+                  <td class="char">!</td><td>33</td><td>00100001</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              <strong>Why this matters:</strong> Every photo, video, song, website, and message on your 
+              phone is ultimately stored as billions of 0s and 1s. Binary is the language of the digital 
+              world — and ASCII is how we map human-readable characters onto that language.
+            </p>
+          </div>
+
+          <!-- Section 7: Key facts -->
+          <div>
+            <h3><span class="num">7</span> Key facts to remember</h3>
+            <div class="highlight-box">
+              <p>• <strong>1 bit</strong> → 2 possible values (0, 1)</p>
+              <p>• <strong>2 bits</strong> → 4 values (00, 01, 10, 11)</p>
+              <p>• <strong>3 bits</strong> → 8 values (000 – 111)</p>
+              <p>• <strong>n bits</strong> → 2<sup>n</sup> unique combinations</p>
+              <p>• <strong>Byte</strong> = 8 bits → 256 possible values (0–255)</p>
+              <p>• The rightmost bit is the <strong>least significant bit (LSB)</strong> and has place value 1.</p>
+              <p>• The leftmost bit is the <strong>most significant bit (MSB)</strong> — its place value grows as 2<sup>n‑1</sup>.</p>
+              <p>• <strong>ASCII</strong> maps characters to numbers (e.g., 'A' = 65 = 01000001).</p>
+              <p style="margin-top:0.6rem;">• Binary <code>1010</code> = decimal <strong>10</strong></p>
+              <p>• Binary <code>11111111</code> = decimal <strong>255</strong></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ PRACTICE (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">✏️</span>
+          <h2>Practice</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="practice-area" id="practiceArea">
+          <!-- practice question 1 -->
+          <div class="question-block" data-q="1">
+            <div class="question-label">
+              <span>1. What is the decimal value of this binary number?</span>
+              <span class="badge">binary → decimal</span>
+            </div>
+            <div class="binary-sequence">1 0 1 1</div>
+            <div class="options">
+              <button class="option-btn" data-opt="9">9</button>
+              <button class="option-btn" data-opt="11">11</button>
+              <button class="option-btn" data-opt="13">13</button>
+            </div>
+            <div class="feedback" id="fb1"></div>
+          </div>
+
+          <!-- practice question 2 -->
+          <div class="question-block" data-q="2">
+            <div class="question-label">
+              <span>2. Which binary number equals decimal 6?</span>
+              <span class="badge">decimal → binary</span>
+            </div>
+            <div class="binary-sequence" style="letter-spacing:normal; font-size:1.3rem;">?</div>
+            <div class="options">
+              <button class="option-btn" data-opt="110">1 1 0</button>
+              <button class="option-btn" data-opt="101">1 0 1</button>
+              <button class="option-btn" data-opt="111">1 1 1</button>
+            </div>
+            <div class="feedback" id="fb2"></div>
+          </div>
+
+          <button class="check-btn" id="checkPracticeBtn">✓ Check practice answers</button>
+          <div style="font-size:0.95rem; color:#1e4d8c; text-align:center; margin-top:0.3rem; font-weight:500;">
+            <span id="practiceScore">0 / 2 correct</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ ASSESSMENT (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">📝</span>
+          <h2>Assessment</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="assessment-area" id="assessmentArea">
+          <!-- Q1 -->
+          <div class="quiz-item" data-quiz="1">
+            <div class="quiz-question">1. What is binary <code style="background:#e2e8f0; padding:0.1rem 0.5rem; border-radius:0.5rem;">1101</code> in decimal?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q1" value="A"> A) 11</label>
+              <label class="quiz-opt"><input type="radio" name="q1" value="B"> B) 13</label>
+              <label class="quiz-opt"><input type="radio" name="q1" value="C"> C) 15</label>
+            </div>
+            <div class="assess-feedback" id="af1"></div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="quiz-item" data-quiz="2">
+            <div class="quiz-question">2. How many bits are needed to represent decimal 20?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q2" value="A"> A) 4 bits</label>
+              <label class="quiz-opt"><input type="radio" name="q2" value="B"> B) 5 bits</label>
+              <label class="quiz-opt"><input type="radio" name="q2" value="C"> C) 6 bits</label>
+            </div>
+            <div class="assess-feedback" id="af2"></div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="quiz-item" data-quiz="3">
+            <div class="quiz-question">3. Which sequence is <u>not</u> a valid binary number?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q3" value="A"> A) 1 0 0 1 0 1</label>
+              <label class="quiz-opt"><input type="radio" name="q3" value="B"> B) 1 1 2 0 1 0</label>
+              <label class="quiz-opt"><input type="radio" name="q3" value="C"> C) 0 0 1 1 1 1</label>
+            </div>
+            <div class="assess-feedback" id="af3"></div>
+          </div>
+
+          <button class="submit-assessment" id="submitAssessment">📥 Submit assessment</button>
+          <div class="score-display" id="assessmentScore">Score: — / 3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BOTTOM NAVIGATION LINKS ============ -->
+    <nav class="nav-bar" style="margin-top: 2.5rem; margin-bottom: 0;">
+      <a href="index.html" class="nav-link">
+        <span class="nav-icon">🏠</span> Home
+      </a>
+      <a href="operators.html" class="nav-link">
+        <span class="nav-icon">➡️</span> Next: Operators
+      </a>
+    </nav>
+
+    <div class="footnote">
+      ⏳ total time: 60 minutes • lesson 20' • practice 20' • assessment 20' • binary numbers & the binary system
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- PRACTICE LOGIC ----------
+      // Practice question 1: binary "1 0 1 1" = 11, correct data-opt = "11"
+      // Practice question 2: decimal 6 = binary "1 1 0", correct data-opt = "110"
+      const practiceCorrectMap = {
+        1: "11",
+        2: "110"
+      };
+
+      // store selected options for practice
+      const selectedPractice = {
+        1: null,
+        2: null
+      };
+
+      // attach click handlers to practice option buttons
+      document.querySelectorAll('.question-block').forEach(block => {
+        const qNum = block.dataset.q;
+        const optionBtns = block.querySelectorAll('.option-btn');
+        optionBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            // remove selected class from siblings
+            optionBtns.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            // store selected value (data-opt attribute)
+            selectedPractice[qNum] = btn.dataset.opt;
+            // clear feedback when a new selection is made
+            const fb = document.getElementById(`fb${qNum}`);
+            if (fb) fb.textContent = '';
+          });
+        });
+      });
+
+      // check practice answers
+      const checkPracticeBtn = document.getElementById('checkPracticeBtn');
+      const practiceScoreSpan = document.getElementById('practiceScore');
+
+      function evaluatePractice() {
+        let correctCount = 0;
+
+        // Question 1
+        const fb1 = document.getElementById('fb1');
+        const q1Selected = selectedPractice[1];
+        if (q1Selected === practiceCorrectMap[1]) {
+          fb1.textContent = '✓ Correct! 1 0 1 1 = 8 + 0 + 2 + 1 = 11.';
+          fb1.className = 'feedback correct';
+          correctCount++;
+        } else {
+          fb1.textContent = q1Selected ? '✗ Incorrect. Use place values: 8, 4, 2, 1.' : '⚠️ Please select an answer.';
+          fb1.className = 'feedback incorrect';
+        }
+
+        // Question 2
+        const fb2 = document.getElementById('fb2');
+        const q2Selected = selectedPractice[2];
+        if (q2Selected === practiceCorrectMap[2]) {
+          fb2.textContent = '✓ Correct! 6 = 4 + 2 → binary 1 1 0.';
+          fb2.className = 'feedback correct';
+          correctCount++;
+        } else {
+          fb2.textContent = q2Selected ? '✗ Incorrect. Remember: 6 = 4 + 2.' : '⚠️ Please select an answer.';
+          fb2.className = 'feedback incorrect';
+        }
+
+        practiceScoreSpan.textContent = `${correctCount} / 2 correct`;
+        return correctCount;
+      }
+
+      checkPracticeBtn.addEventListener('click', evaluatePractice);
+
+      // ---------- ASSESSMENT LOGIC ----------
+      const submitAssessment = document.getElementById('submitAssessment');
+      const assessmentScoreDiv = document.getElementById('assessmentScore');
+
+      // correct answers for assessment
+      const assessmentKey = {
+        q1: 'B',  // 1101 = 13
+        q2: 'B',  // 20 needs 5 bits (16+4)
+        q3: 'B'   // 1 1 2 0 1 0 contains 2, invalid
+      };
+
+      function resetAssessmentFeedback() {
+        for (let i = 1; i <= 3; i++) {
+          const fb = document.getElementById(`af${i}`);
+          if (fb) {
+            fb.textContent = '';
+            fb.className = 'assess-feedback';
+          }
+        }
+      }
+
+      // clear feedback when user selects a new radio option
+      document.querySelectorAll('.quiz-opt input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          const name = e.target.name; // q1, q2, q3
+          const qNum = name.charAt(1);
+          const fb = document.getElementById(`af${qNum}`);
+          if (fb) {
+            fb.textContent = '';
+            fb.className = 'assess-feedback';
+          }
+        });
+      });
+
+      submitAssessment.addEventListener('click', () => {
+        // reset any previous feedback
+        resetAssessmentFeedback();
+
+        let correctCount = 0;
+        let allAnswered = true;
+
+        // Q1
+        const q1Selected = document.querySelector('input[name="q1"]:checked');
+        const af1 = document.getElementById('af1');
+        if (!q1Selected) {
+          af1.textContent = '⚠️ Please select an answer.';
+          af1.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q1Selected.value === assessmentKey.q1) {
+            af1.textContent = '✓ Correct! 1101₂ = 8 + 4 + 0 + 1 = 13.';
+            af1.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af1.textContent = '✗ Incorrect. Add place values: 8 + 4 + 0 + 1.';
+            af1.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // Q2
+        const q2Selected = document.querySelector('input[name="q2"]:checked');
+        const af2 = document.getElementById('af2');
+        if (!q2Selected) {
+          af2.textContent = '⚠️ Please select an answer.';
+          af2.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q2Selected.value === assessmentKey.q2) {
+            af2.textContent = '✓ Correct! 20 = 16 + 4 → binary 10100 (5 bits).';
+            af2.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af2.textContent = '✗ Incorrect. 2⁴ = 16, 2⁵ = 32. 20 needs 5 bits.';
+            af2.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // Q3
+        const q3Selected = document.querySelector('input[name="q3"]:checked');
+        const af3 = document.getElementById('af3');
+        if (!q3Selected) {
+          af3.textContent = '⚠️ Please select an answer.';
+          af3.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q3Selected.value === assessmentKey.q3) {
+            af3.textContent = '✓ Correct! 1 1 2 0 1 0 contains the digit 2 — not binary.';
+            af3.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af3.textContent = '✗ Incorrect. Binary only uses 0 and 1.';
+            af3.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // update score display
+        assessmentScoreDiv.textContent = `Score: ${correctCount} / 3`;
+        if (!allAnswered) {
+          assessmentScoreDiv.textContent += ' (answer all questions)';
+        }
+      });
+
+      // clear practice selections on load (already null)
+    })();
+  </script>
+</body>
+</html>

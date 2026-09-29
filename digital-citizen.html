@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Citizenship · Grade 7 Lesson</title>
+  <style>
+    /* global reset & typography */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: #f6f9ff;
+      color: #0b1e33;
+      padding: 2rem 1.5rem;
+      line-height: 1.65;
+    }
+
+    .lesson-container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* header */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #0b1e33, #2563eb);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      display: inline-block;
+      border-bottom: 4px solid #3b82f6;
+      padding-bottom: 0.4rem;
+    }
+
+    .header .time-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 600;
+      padding: 0.35rem 1.3rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    }
+
+    /* single column stack */
+    .sections-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* card style */
+    .section-card {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      box-shadow: 0 15px 30px -10px rgba(0, 35, 80, 0.1), 0 2px 10px rgba(0, 0, 0, 0.02);
+      padding: 2rem 2rem 2.3rem;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e2ebf6;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .section-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 35px -12px rgba(0, 47, 112, 0.15);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.6rem;
+      border-bottom: 3px dashed #b9d3f0;
+      padding-bottom: 0.9rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0b2b5c;
+    }
+
+    .section-header .time {
+      margin-left: auto;
+      background: #e8f0fe;
+      border-radius: 30px;
+      padding: 0.3rem 1.1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1e4d8c;
+      white-space: nowrap;
+    }
+
+    .icon {
+      font-size: 2.1rem;
+      line-height: 1;
+    }
+
+    /* lesson content */
+    .lesson-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .lesson-text h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0b2b5c;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lesson-text h3 .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #2563eb;
+      color: white;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      font-size: 0.95rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .lesson-text h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e3a8a;
+      margin-top: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .lesson-text p {
+      font-size: 1rem;
+      color: #1e293b;
+      margin-bottom: 0.6rem;
+    }
+
+    .concept-box {
+      background: #eef4ff;
+      border-left: 6px solid #2563eb;
+      padding: 1.2rem 1.4rem;
+      border-radius: 1rem;
+      font-size: 1rem;
+      color: #0a1e3c;
+    }
+
+    /* highlight box */
+    .highlight-box {
+      background: #e6f0ff;
+      border-radius: 1rem;
+      padding: 1.2rem 1.4rem;
+      font-size: 0.98rem;
+      border: 1px solid #c8ddfa;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0.4rem;
+    }
+
+    .highlight-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* rule list */
+    .rule-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-top: 0.2rem;
+    }
+
+    .rule-list li {
+      display: flex;
+      gap: 0.7rem;
+      align-items: baseline;
+      font-size: 1rem;
+    }
+
+    .rule-list li::before {
+      content: "▹";
+      color: #2563eb;
+      font-weight: bold;
+      font-size: 1.3rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* info table */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0;
+      font-size: 0.92rem;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .info-table th {
+      background: #2563eb;
+      color: white;
+      padding: 0.7rem 0.9rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .info-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #e2ebf6;
+      background: #ffffff;
+      vertical-align: top;
+    }
+
+    .info-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .info-table tr:nth-child(even) td {
+      background: #f7faff;
+    }
+
+    /* example grid */
+    .example-grid {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 0.8rem 0;
+    }
+
+    .example-card {
+      flex: 1 1 220px;
+      border-radius: 1rem;
+      padding: 1rem 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .example-card.blue {
+      background: #dbeafe;
+      border-left: 5px solid #2563eb;
+      color: #1e3a8a;
+    }
+
+    .example-card.green {
+      background: #dcfce7;
+      border-left: 5px solid #16a34a;
+      color: #14532d;
+    }
+
+    .example-card.orange {
+      background: #ffedd5;
+      border-left: 5px solid #ea580c;
+      color: #7c2d12;
+    }
+
+    .example-card.purple {
+      background: #ede9fe;
+      border-left: 5px solid #7c3aed;
+      color: #4c1d95;
+    }
+
+    .example-card.red {
+      background: #fee2e2;
+      border-left: 5px solid #dc2626;
+      color: #7f1d1d;
+    }
+
+    .example-card h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* good/bad example */
+    .example-card.good {
+      background: #dcfce7;
+      border-left: 5px solid #16a34a;
+      color: #14532d;
+    }
+
+    .example-card.bad {
+      background: #fee2e2;
+      border-left: 5px solid #dc2626;
+      color: #7f1d1d;
+    }
+
+    /* practice content */
+    .practice-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .question-block {
+      background: #f9fcff;
+      padding: 1.2rem 1.4rem;
+      border-radius: 1.2rem;
+      border: 1px solid #d4e2fc;
+    }
+
+    .question-label {
+      font-weight: 600;
+      color: #123a6b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      background: #dbeafe;
+      border-radius: 30px;
+      padding: 0.15rem 0.9rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1e40af;
+    }
+
+    .scenario-text {
+      background: #f0f7ff;
+      border-radius: 0.9rem;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.95rem;
+      color: #0a1e3c;
+      margin: 0.4rem 0 1rem;
+      border-left: 4px solid #2563eb;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .option-btn {
+      background: #eaf0fa;
+      border: none;
+      border-radius: 2.5rem;
+      padding: 0.7rem 1.6rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #0b1e33;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      flex: 1 0 auto;
+    }
+
+    .option-btn:hover {
+      background: #cfdef5;
+    }
+
+    .option-btn.selected {
+      background: #2563eb;
+      color: white;
+      border-color: #1e40af;
+    }
+
+    .feedback {
+      font-size: 0.95rem;
+      margin-top: 0.6rem;
+      min-height: 1.6rem;
+      font-weight: 500;
+    }
+
+    .feedback.correct {
+      color: #0f7b3e;
+    }
+
+    .feedback.incorrect {
+      color: #b91c1c;
+    }
+
+    .check-btn {
+      background: #0b1e33;
+      color: white;
+      border: none;
+      border-radius: 3rem;
+      padding: 0.9rem 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    .check-btn:hover {
+      background: #1e2f4a;
+    }
+
+    /* assessment area */
+    .assessment-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .quiz-item {
+      background: #f9fcff;
+      border-radius: 1.2rem;
+      padding: 1.2rem 1.4rem;
+      border-left: 6px solid #2563eb;
+    }
+
+    .quiz-question {
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      color: #0b1e33;
+      font-size: 1.05rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-opt {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: #ffffff;
+      padding: 0.7rem 1rem;
+      border-radius: 0.9rem;
+      border: 1px solid #d9e4f5;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .quiz-opt:hover {
+      background: #eef4fe;
+    }
+
+    .quiz-opt input[type="radio"] {
+      accent-color: #2563eb;
+      width: 1.15rem;
+      height: 1.15rem;
+      margin: 0;
+    }
+
+    .quiz-opt label {
+      font-size: 1rem;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .assess-feedback {
+      font-size: 0.95rem;
+      font-weight: 500;
+      min-height: 1.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .assess-feedback.correct {
+      color: #0f7b3e;
+    }
+
+    .assess-feedback.incorrect {
+      color: #b91c1c;
+    }
+
+    .submit-assessment {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 3rem;
+      padding: 1rem 1.2rem;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      width: 100%;
+      margin-top: 0.5rem;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+    }
+
+    .submit-assessment:hover {
+      background: #1d4ed8;
+    }
+
+    .submit-assessment:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .score-display {
+      text-align: center;
+      font-weight: 600;
+      margin-top: 0.6rem;
+      background: #e4eefc;
+      padding: 0.7rem;
+      border-radius: 3rem;
+      font-size: 1rem;
+      color: #103a6b;
+    }
+
+    /* navigation bar */
+    .nav-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      border: 2px solid #c8ddfa;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.12);
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+    }
+
+    .nav-link .nav-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* footnotes */
+    .footnote {
+      margin-top: 2.8rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #4b6589;
+      border-top: 1px solid #d0ddef;
+      padding-top: 1.5rem;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.2rem 0.9rem;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-card {
+        padding: 1.5rem 1.2rem 1.8rem;
+      }
+
+      .section-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .option-btn {
+        padding: 0.6rem 1.1rem;
+        font-size: 0.95rem;
+      }
+
+      .info-table {
+        font-size: 0.8rem;
+      }
+
+      .info-table th,
+      .info-table td {
+        padding: 0.45rem 0.5rem;
+      }
+
+      .nav-link {
+        padding: 0.55rem 1.1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <!-- header -->
+    <div class="header">
+      <h1>🌐 Digital Citizenship</h1>
+      <div class="time-badge">⏱️ 1 hour · 3 sections · Grade 7</div>
+    </div>
+
+    <!-- ============ TOP NAVIGATION LINKS ============ -->
+    <nav class="nav-bar">
+      <a href="index.html" class="nav-link">
+        <span class="nav-icon">🏠</span> Home
+      </a>      
+    </nav>
+
+    <!-- single column stack: lesson, practice, assessment -->
+    <div class="sections-stack">
+      <!-- ============ LESSON (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">📘</span>
+          <h2>Lesson</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="lesson-text">
+
+          <!-- Section 1: What is a digital citizen? -->
+          <div>
+            <h3><span class="num">1</span> What is a digital citizen?</h3>
+            <p>
+              A <strong>digital citizen</strong> is someone who uses the internet and digital 
+              technology in a responsible, respectful, and safe way. Just like being a good citizen 
+              in your community means following rules and treating others well, being a good 
+              <em>digital</em> citizen means doing the same thing online.
+            </p>
+            <p>
+              Every time you go online — whether you're playing a game, watching videos, chatting 
+              with friends, or doing homework — you are participating in a digital community. And 
+              like any community, it works best when everyone does their part.
+            </p>
+            <div class="concept-box">
+              <strong>💡 Key idea:</strong> Being a digital citizen is about more than just using 
+              technology. It's about using it <em>wisely</em>, <em>kindly</em>, and <em>safely</em>.
+              You are responsible for your actions online, just like you are offline.
+            </div>
+          </div>
+
+          <!-- Section 2: The 9 elements of digital citizenship -->
+          <div>
+            <h3><span class="num">2</span> The 9 elements of digital citizenship</h3>
+            <p>
+              Experts have identified nine key areas that make up digital citizenship. Understanding 
+              each one helps you become a better, safer, and more responsible digital citizen.
+            </p>
+            <table class="info-table">
+              <thead>
+                <tr>
+                  <th>Element</th>
+                  <th>What it means</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Digital Access</strong></td>
+                  <td>Everyone should have fair access to technology and the internet.</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Digital Commerce</strong></td>
+                  <td>Buying and selling online safely and legally.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Digital Communication</strong></td>
+                  <td>Communicating respectfully and clearly through digital tools.</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Digital Literacy</strong></td>
+                  <td>Learning how to find, evaluate, and use information online.</td>
+                </tr>
+                <tr>
+                  <td><strong>5. Digital Etiquette</strong></td>
+                  <td>Following rules of good behavior and manners online.</td>
+                </tr>
+                <tr>
+                  <td><strong>6. Digital Law</strong></td>
+                  <td>Understanding the legal rules of using technology.</td>
+                </tr>
+                <tr>
+                  <td><strong>7. Digital Rights &amp; Responsibilities</strong></td>
+                  <td>You have rights online — and you also have responsibilities.</td>
+                </tr>
+                <tr>
+                  <td><strong>8. Digital Health &amp; Wellness</strong></td>
+                  <td>Balancing screen time with physical and mental health.</td>
+                </tr>
+                <tr>
+                  <td><strong>9. Digital Security</strong></td>
+                  <td>Protecting your devices, accounts, and personal information.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Section 3: Digital etiquette (netiquette) -->
+          <div>
+            <h3><span class="num">3</span> Digital etiquette (netiquette)</h3>
+            <p>
+              <strong>Digital etiquette</strong> — often called <em>netiquette</em> — is about 
+              treating others with respect online. Just because you're behind a screen doesn't mean 
+              your words and actions don't affect real people.
+            </p>
+
+            <h4>Good netiquette vs. bad netiquette</h4>
+            <div class="example-grid">
+              <div class="example-card good">
+                <h5>✅ Good netiquette</h5>
+                <p>• Think before you post</p>
+                <p>• Use kind and respectful language</p>
+                <p>• Respect others' opinions</p>
+                <p>• Give credit when you use others' work</p>
+                <p>• Report bullying instead of joining in</p>
+                <p>• Ask permission before posting photos of others</p>
+              </div>
+              <div class="example-card bad">
+                <h5>❌ Bad netiquette</h5>
+                <p>• Posting mean comments</p>
+                <p>• Using ALL CAPS to shout</p>
+                <p>• Sharing someone's private info</p>
+                <p>• Spreading rumors or fake news</p>
+                <p>• Cyberbullying</p>
+                <p>• Posting embarrassing photos without consent</p>
+              </div>
+            </div>
+
+            <div class="highlight-box">
+              <p><strong>💡 The Golden Rule online:</strong> Treat others online the way you want 
+              to be treated. If you wouldn't say it to someone's face, don't type it online.</p>
+            </div>
+          </div>
+
+          <!-- Section 4: Cyberbullying -->
+          <div>
+            <h3><span class="num">4</span> Cyberbullying — what it is and how to stop it</h3>
+            <p>
+              <strong>Cyberbullying</strong> is when someone uses digital technology to hurt, 
+              embarrass, threaten, or harass another person. It can happen through text messages, 
+              social media, online games, or any digital platform.
+            </p>
+
+            <h4>Examples of cyberbullying</h4>
+            <ul class="rule-list">
+              <li>Sending mean or threatening messages</li>
+              <li>Posting embarrassing photos or videos of someone</li>
+              <li>Spreading rumors online</li>
+              <li>Excluding someone from an online group on purpose</li>
+              <li>Creating fake accounts to impersonate someone</li>
+              <li>Leaving hurtful comments on someone's posts</li>
+            </ul>
+
+            <h4>What to do if you see cyberbullying</h4>
+            <ul class="rule-list">
+              <li><strong>Don't respond</strong> — reacting often makes it worse.</li>
+              <li><strong>Save the evidence</strong> — take screenshots as proof.</li>
+              <li><strong>Report it</strong> — use the platform's report button.</li>
+              <li><strong>Block the person</strong> — stop them from contacting you.</li>
+              <li><strong>Tell a trusted adult</strong> — a parent, teacher, or school counselor.</li>
+              <li><strong>Support the victim</strong> — let them know they're not alone.</li>
+            </ul>
+
+            <div class="highlight-box">
+              <p><strong>⚠️ Remember:</strong> Cyberbullying is never the victim's fault. If you 
+              are being bullied online, it is okay to ask for help. You deserve to feel safe.</p>
+            </div>
+          </div>
+
+          <!-- Section 5: Your digital footprint -->
+          <div>
+            <h3><span class="num">5</span> Your digital footprint</h3>
+            <p>
+              Your <strong>digital footprint</strong> is the trail of data you leave behind every 
+              time you go online. It includes everything you post, comment, like, search, and share.
+              This footprint can last a very long time — sometimes forever.
+            </p>
+
+            <h4>Two types of digital footprints</h4>
+            <table class="info-table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Examples</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Active footprint</strong></td>
+                  <td>Data you intentionally share</td>
+                  <td>Posts, comments, photos, likes, shares</td>
+                </tr>
+                <tr>
+                  <td><strong>Passive footprint</strong></td>
+                  <td>Data collected without you actively sharing</td>
+                  <td>Websites visited, location data, search history</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Why your digital footprint matters</h4>
+            <ul class="rule-list">
+              <li><strong>Colleges and employers</strong> may look at your online presence.</li>
+              <li><strong>Scholarships</strong> can be affected by what you post.</li>
+              <li><strong>Your reputation</strong> — online actions can shape how others see you.</li>
+              <li><strong>Permanence</strong> — even deleted posts can be saved by others.</li>
+            </ul>
+
+            <div class="concept-box">
+              <strong>💡 Think before you post:</strong> Ask yourself these questions:<br>
+              • Would I be okay if my parents or teachers saw this?<br>
+              • Would I be okay if this was shown on the news?<br>
+              • Will this still be okay in 5 years?<br>
+              • Am I being kind and respectful?
+            </div>
+          </div>
+
+          <!-- Section 6: Digital rights and responsibilities -->
+          <div>
+            <h3><span class="num">6</span> Your digital rights and responsibilities</h3>
+            <p>
+              As a digital citizen, you have <strong>rights</strong> — things you are entitled to — 
+              and <strong>responsibilities</strong> — things you are expected to do.
+            </p>
+
+            <h4>Your digital rights</h4>
+            <ul class="rule-list">
+              <li>The right to privacy and to control your personal information.</li>
+              <li>The right to express yourself freely (within legal limits).</li>
+              <li>The right to be safe from harassment and bullying.</li>
+              <li>The right to access information and technology.</li>
+              <li>The right to have your creative work protected.</li>
+            </ul>
+
+            <h4>Your digital responsibilities</h4>
+            <ul class="rule-list">
+              <li>Treat others online with respect and kindness.</li>
+              <li>Protect your own personal information and accounts.</li>
+              <li>Respect others' privacy — don't share their info without permission.</li>
+              <li>Follow the law and the rules of the platforms you use.</li>
+              <li>Give credit to others' work and avoid plagiarism.</li>
+              <li>Report harmful content and cyberbullying.</li>
+            </ul>
+          </div>
+
+          <!-- Section 7: Digital health and wellness -->
+          <div>
+            <h3><span class="num">7</span> Digital health and wellness</h3>
+            <p>
+              Being a good digital citizen also means taking care of your own health and well-being. 
+              Too much screen time can affect your sleep, your mood, your grades, and your physical 
+              health.
+            </p>
+
+            <h4>Tips for healthy technology use</h4>
+            <ul class="rule-list">
+              <li>Set limits on screen time — and stick to them.</li>
+              <li>Take regular breaks from screens (try the 20-20-20 rule: every 20 minutes, look at something 20 feet away for 20 seconds).</li>
+              <li>Don't use screens for at least 1 hour before bedtime.</li>
+              <li>Balance online activities with offline hobbies, sports, and time with friends.</li>
+              <li>Be mindful of how social media makes you feel — if it makes you anxious or sad, step away.</li>
+              <li>Remember that what you see online is often a highlight reel, not reality.</li>
+            </ul>
+
+            <div class="highlight-box">
+              <p><strong>💡 Remember:</strong> Technology is a tool. You control it — it should not 
+              control you. Healthy habits online lead to a healthier, happier life overall.</p>
+            </div>
+          </div>
+
+          <!-- Section 8: Key facts -->
+          <div>
+            <h3><span class="num">8</span> Key facts to remember</h3>
+            <div class="highlight-box">
+              <p>• A <strong>digital citizen</strong> uses technology responsibly, respectfully, and safely.</p>
+              <p>• There are <strong>9 elements</strong> of digital citizenship, including access, etiquette, and security.</p>
+              <p>• <strong>Netiquette</strong> means being polite and respectful online.</p>
+              <p>• <strong>Cyberbullying</strong> is using technology to hurt others — report it and tell a trusted adult.</p>
+              <p>• Your <strong>digital footprint</strong> is the trail of data you leave online.</p>
+              <p>• You have <strong>rights</strong> online (privacy, safety) and <strong>responsibilities</strong> (respect, kindness).</p>
+              <p>• Take care of your <strong>digital health</strong> — balance screen time with offline activities.</p>
+              <p>• The <strong>Golden Rule</strong> applies online: treat others the way you want to be treated.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============ PRACTICE (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">✏️</span>
+          <h2>Practice</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="practice-area" id="practiceArea">
+          <!-- practice question 1 -->
+          <div class="question-block" data-q="1">
+            <div class="question-label">
+              <span>1. What should you do if you see someone being cyberbullied?</span>
+              <span class="badge">cyberbullying</span>
+            </div>
+            <div class="scenario-text">
+              <strong>Scenario:</strong> You're in a group chat and someone keeps posting mean 
+              comments about a classmate.
+            </div>
+            <div class="options">
+              <button class="option-btn" data-opt="A">A) Join in so they don't target you</button>
+              <button class="option-btn" data-opt="B">B) Take screenshots, report it, and tell an adult</button>
+              <button class="option-btn" data-opt="C">C) Ignore it — it's not your problem</button>
+            </div>
+            <div class="feedback" id="fb1"></div>
+          </div>
+
+          <!-- practice question 2 -->
+          <div class="question-block" data-q="2">
+            <div class="question-label">
+              <span>2. Which of these is part of good digital etiquette?</span>
+              <span class="badge">netiquette</span>
+            </div>
+            <div class="options">
+              <button class="option-btn" data-opt="A">A) Using ALL CAPS to get attention</button>
+              <button class="option-btn" data-opt="B">B) Thinking before you post</button>
+              <button class="option-btn" data-opt="C">C) Sharing your friend's secrets online</button>
+            </div>
+            <div class="feedback" id="fb2"></div>
+          </div>
+
+          <button class="check-btn" id="checkPracticeBtn">✓ Check practice answers</button>
+          <div style="font-size:0.95rem; color:#1e4d8c; text-align:center; margin-top:0.3rem; font-weight:500;">
+            <span id="practiceScore">0 / 2 correct</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ ASSESSMENT (20 min) ============ -->
+      <div class="section-card">
+        <div class="section-header">
+          <span class="icon">📝</span>
+          <h2>Assessment</h2>
+          <span class="time">20 min</span>
+        </div>
+        <div class="assessment-area" id="assessmentArea">
+          <!-- Q1 -->
+          <div class="quiz-item" data-quiz="1">
+            <div class="quiz-question">1. What is a digital citizen?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q1" value="A"> A) Someone who spends a lot of time online</label>
+              <label class="quiz-opt"><input type="radio" name="q1" value="B"> B) Someone who uses technology responsibly, respectfully, and safely</label>
+              <label class="quiz-opt"><input type="radio" name="q1" value="C"> C) Someone who only uses computers for school</label>
+            </div>
+            <div class="assess-feedback" id="af1"></div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="quiz-item" data-quiz="2">
+            <div class="quiz-question">2. What is a digital footprint?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q2" value="A"> A) The size of your computer screen</label>
+              <label class="quiz-opt"><input type="radio" name="q2" value="B"> B) The trail of data you leave behind online</label>
+              <label class="quiz-opt"><input type="radio" name="q2" value="C"> C) A type of computer virus</label>
+            </div>
+            <div class="assess-feedback" id="af2"></div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="quiz-item" data-quiz="3">
+            <div class="quiz-question">3. Which of the following is a <u>responsibility</u> of a digital citizen?</div>
+            <div class="quiz-options">
+              <label class="quiz-opt"><input type="radio" name="q3" value="A"> A) Sharing your password with friends</label>
+              <label class="quiz-opt"><input type="radio" name="q3" value="B"> B) Treating others online with respect and kindness</label>
+              <label class="quiz-opt"><input type="radio" name="q3" value="C"> C) Spending as much time online as possible</label>
+            </div>
+            <div class="assess-feedback" id="af3"></div>
+          </div>
+
+          <button class="submit-assessment" id="submitAssessment">📥 Submit assessment</button>
+          <div class="score-display" id="assessmentScore">Score: — / 3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ BOTTOM NAVIGATION LINKS ============ -->
+    <nav class="nav-bar" style="margin-top: 2.5rem; margin-bottom: 0;">
+      <a href="index.html" class="nav-link">
+        <span class="nav-icon">🏠</span> Home
+      </a>
+      
+    </nav>
+
+    <div class="footnote">
+      ⏳ total time: 60 minutes • lesson 20' • practice 20' • assessment 20' • digital citizenship (grade 7)
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- PRACTICE LOGIC ----------
+      // Practice question 1: correct = B (take screenshots, report, tell adult)
+      // Practice question 2: correct = B (thinking before you post)
+      const practiceCorrectMap = {
+        1: "B",
+        2: "B"
+      };
+
+      // store selected options for practice
+      const selectedPractice = {
+        1: null,
+        2: null
+      };
+
+      // attach click handlers to practice option buttons
+      document.querySelectorAll('.question-block').forEach(block => {
+        const qNum = block.dataset.q;
+        const optionBtns = block.querySelectorAll('.option-btn');
+        optionBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            // remove selected class from siblings
+            optionBtns.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            // store selected value (data-opt attribute)
+            selectedPractice[qNum] = btn.dataset.opt;
+            // clear feedback when a new selection is made
+            const fb = document.getElementById(`fb${qNum}`);
+            if (fb) fb.textContent = '';
+          });
+        });
+      });
+
+      // check practice answers
+      const checkPracticeBtn = document.getElementById('checkPracticeBtn');
+      const practiceScoreSpan = document.getElementById('practiceScore');
+
+      function evaluatePractice() {
+        let correctCount = 0;
+
+        // Question 1
+        const fb1 = document.getElementById('fb1');
+        const q1Selected = selectedPractice[1];
+        if (q1Selected === practiceCorrectMap[1]) {
+          fb1.textContent = '✓ Correct! Take screenshots, report it, and tell a trusted adult.';
+          fb1.className = 'feedback correct';
+          correctCount++;
+        } else {
+          fb1.textContent = q1Selected ? '✗ Incorrect. Never join in — report it and get help.' : '⚠️ Please select an answer.';
+          fb1.className = 'feedback incorrect';
+        }
+
+        // Question 2
+        const fb2 = document.getElementById('fb2');
+        const q2Selected = selectedPractice[2];
+        if (q2Selected === practiceCorrectMap[2]) {
+          fb2.textContent = '✓ Correct! Thinking before you post is a key part of good netiquette.';
+          fb2.className = 'feedback correct';
+          correctCount++;
+        } else {
+          fb2.textContent = q2Selected ? '✗ Incorrect. Good netiquette means being respectful online.' : '⚠️ Please select an answer.';
+          fb2.className = 'feedback incorrect';
+        }
+
+        practiceScoreSpan.textContent = `${correctCount} / 2 correct`;
+        return correctCount;
+      }
+
+      checkPracticeBtn.addEventListener('click', evaluatePractice);
+
+      // ---------- ASSESSMENT LOGIC ----------
+      const submitAssessment = document.getElementById('submitAssessment');
+      const assessmentScoreDiv = document.getElementById('assessmentScore');
+
+      // correct answers for assessment
+      const assessmentKey = {
+        q1: 'B',  // uses technology responsibly
+        q2: 'B',  // trail of data left online
+        q3: 'B'   // treating others with respect
+      };
+
+      function resetAssessmentFeedback() {
+        for (let i = 1; i <= 3; i++) {
+          const fb = document.getElementById(`af${i}`);
+          if (fb) {
+            fb.textContent = '';
+            fb.className = 'assess-feedback';
+          }
+        }
+      }
+
+      // clear feedback when user selects a new radio option
+      document.querySelectorAll('.quiz-opt input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          const name = e.target.name; // q1, q2, q3
+          const qNum = name.charAt(1);
+          const fb = document.getElementById(`af${qNum}`);
+          if (fb) {
+            fb.textContent = '';
+            fb.className = 'assess-feedback';
+          }
+        });
+      });
+
+      submitAssessment.addEventListener('click', () => {
+        // reset any previous feedback
+        resetAssessmentFeedback();
+
+        let correctCount = 0;
+        let allAnswered = true;
+
+        // Q1
+        const q1Selected = document.querySelector('input[name="q1"]:checked');
+        const af1 = document.getElementById('af1');
+        if (!q1Selected) {
+          af1.textContent = '⚠️ Please select an answer.';
+          af1.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q1Selected.value === assessmentKey.q1) {
+            af1.textContent = '✓ Correct! A digital citizen uses technology responsibly, respectfully, and safely.';
+            af1.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af1.textContent = '✗ Incorrect. Being a digital citizen is about how you behave online.';
+            af1.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // Q2
+        const q2Selected = document.querySelector('input[name="q2"]:checked');
+        const af2 = document.getElementById('af2');
+        if (!q2Selected) {
+          af2.textContent = '⚠️ Please select an answer.';
+          af2.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q2Selected.value === assessmentKey.q2) {
+            af2.textContent = '✓ Correct! Your digital footprint is the trail of data you leave online.';
+            af2.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af2.textContent = '✗ Incorrect. Your digital footprint is all the data you leave behind online.';
+            af2.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // Q3
+        const q3Selected = document.querySelector('input[name="q3"]:checked');
+        const af3 = document.getElementById('af3');
+        if (!q3Selected) {
+          af3.textContent = '⚠️ Please select an answer.';
+          af3.className = 'assess-feedback incorrect';
+          allAnswered = false;
+        } else {
+          if (q3Selected.value === assessmentKey.q3) {
+            af3.textContent = '✓ Correct! Treating others with respect online is a key responsibility.';
+            af3.className = 'assess-feedback correct';
+            correctCount++;
+          } else {
+            af3.textContent = '✗ Incorrect. Respecting others is a responsibility; sharing passwords is not.';
+            af3.className = 'assess-feedback incorrect';
+          }
+        }
+
+        // update score display
+        assessmentScoreDiv.textContent = `Score: ${correctCount} / 3`;
+        if (!allAnswered) {
+          assessmentScoreDiv.textContent += ' (answer all questions)';
+        }
+      });
+
+      // clear practice selections on load (already null)
+    })();
+  </script>
+</body>
+</html>

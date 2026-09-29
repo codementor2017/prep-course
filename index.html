@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preparatory Course · Mathayom 1 & 4</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f5f7e9 0%, #ffffff 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    /* single column container */
+    .main-card {
+      max-width: 800px;          /* narrower for a clean single column */
+      width: 100%;
+      background: #ffffff;
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(97, 152, 0, 0.15);
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(211, 231, 142, 0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* decorative top stripe */
+    .main-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(90deg, #619800 0%, #D3E78E 30%, #FDFE7F 50%, #FF61BB 75%, #F4009D 100%);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #2e3b1f;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #3d4a2c;
+      background: #FDFE7F;
+      background: linear-gradient(105deg, #fdfe7f 0%, #f8ffcf 100%);
+      padding: 1.5rem 2rem;
+      border-radius: 1.8rem;
+      margin-bottom: 2.5rem;
+      border-left: 10px solid #619800;
+      box-shadow: 0 4px 12px rgba(211, 231, 142, 0.5);
+      font-weight: 500;
+    }
+
+    .intro strong {
+      color: #2e3b1f;
+      font-weight: 700;
+    }
+
+    /* TWO columns only for the level cards (M1 & M4) */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-top: 0.5rem;
+    }
+
+    /* each level card */
+    .level-card {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 1.6rem 1.4rem 1.8rem;
+      border: 2px solid #D3E78E;
+      box-shadow: 0 8px 0 #619800, 0 12px 25px rgba(97, 152, 0, 0.15);
+      transition: transform 0.2s ease;
+    }
+
+    .level-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .level-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 4px solid #FF61BB;
+      padding-bottom: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .level-badge {
+      background: #F4009D;
+      color: white;
+      font-weight: 800;
+      font-size: 1.4rem;
+      padding: 0.35rem 1rem;
+      border-radius: 60px;
+      letter-spacing: -0.01em;
+      box-shadow: 0 4px 0 #b3006e;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+      line-height: 1.2;
+    }
+
+    .level-header h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #2e3b1f;
+      letter-spacing: -0.02em;
+    }
+
+    .lesson-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .lesson-item {
+      display: flex;
+      align-items: center;
+      transition: all 0.15s ease;
+    }
+
+    .lesson-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      text-decoration: none;
+      background: #FDFE7F;
+      background: linear-gradient(95deg, #fdfe7f 0%, #f9ffd4 100%);
+      color: #1e2a0e;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.8rem 1.2rem;
+      border-radius: 60px;
+      border: 2px solid #D3E78E;
+      box-shadow: 0 3px 0 #b3cc5e;
+      transition: all 0.15s ease;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .lesson-link:hover {
+      background: #FF61BB;
+      background: linear-gradient(95deg, #ff61bb 0%, #ff9fd2 100%);
+      border-color: #F4009D;
+      color: #1a1a1a;
+      box-shadow: 0 3px 0 #b3006e;
+      transform: scale(1.01);
+    }
+
+    .lesson-link:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 #b3006e;
+    }
+
+    .lesson-link .day-tag {
+      background: rgba(97, 152, 0, 0.2);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #2e3b1f;
+      border: 1px solid #619800;
+      transition: all 0.15s;
+      white-space: nowrap;
+      margin-left: 0.8rem;
+    }
+
+    .lesson-link:hover .day-tag {
+      background: #ffffff;
+      border-color: #F4009D;
+      color: #b3006e;
+    }
+
+    .lesson-name {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .lesson-name::before {
+      content: "▹";
+      color: #619800;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .lesson-link:hover .lesson-name::before {
+      color: #F4009D;
+    }
+
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #5a6b3e;
+      border-top: 2px dashed #D3E78E;
+      padding-top: 1.5rem;
+      font-weight: 500;
+    }
+
+    .footer-note span {
+      background: #D3E78E;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      color: #1e2a0e;
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 700px) {
+      .main-card {
+        padding: 1.8rem 1.2rem;
+      }
+
+      h1 {
+        font-size: 1.9rem;
+      }
+
+      .intro {
+        font-size: 1rem;
+        padding: 1.2rem;
+      }
+
+      .levels-grid {
+        grid-template-columns: 1fr;   /* stack on small screens */
+        gap: 1.5rem;
+      }
+
+      .level-badge {
+        font-size: 1.2rem;
+        padding: 0.3rem 0.9rem;
+      }
+
+      .level-header h2 {
+        font-size: 1.4rem;
+      }
+
+      .lesson-link {
+        font-size: 0.95rem;
+        padding: 0.7rem 1rem;
+      }
+
+      .lesson-link .day-tag {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.6rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      body {
+        padding: 0.8rem;
+      }
+
+      .main-card {
+        border-radius: 1.5rem;
+        padding: 1.5rem 1rem;
+      }
+
+      .intro {
+        border-left-width: 6px;
+      }
+
+      .level-card {
+        padding: 1.2rem 1rem 1.4rem;
+        box-shadow: 0 5px 0 #619800, 0 8px 15px rgba(0,0,0,0.1);
+      }
+
+      .lesson-link {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.9rem;
+      }
+
+      .lesson-name::before {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-card">
+    <!-- header & intro (single column) -->
+    <h1>📘 Preparatory Course<br><span style="color: #F4009D;">Mathayom 1 &amp; Mathayom 4</span></h1>
+    
+    <div class="intro">
+      <strong>Welcome to the two‑week preparatory course.</strong> Before regular classes begin, all students join this foundation programme. 
+      Each level includes <strong>five essential lessons</strong> designed to build digital confidence and core skills. 
+      Mathayom 1 focuses on binary, operators, variables, data, and digital citizenship. 
+      Mathayom 4 explores algorithms, functions, data, infographics, and digital citizenship. 
+      Every lesson is a <strong>clickable link</strong> — just tap to begin.
+    </div>
+
+    <!-- two columns ONLY for the level cards -->
+    <div class="levels-grid">
+      <!-- Mathayom 1 card -->
+      <section class="level-card">
+        <div class="level-header">
+          <span class="level-badge">M1</span>
+          <h2>Mathayom 1</h2>
+        </div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <a href="binary.html" class="lesson-link">
+              <span class="lesson-name">Binary Numbers And The Binary System</span>
+              <span class="day-tag">Day 1</span>
+            </a>
+          </li>
+          <li class="lesson-item">
+            <a href="operators.html" class="lesson-link">
+              <span class="lesson-name">Operators</span>
+              <span class="day-tag">Day 2</span>
+            </a>
+          </li>
+          <li class="lesson-item">
+            <a href="variables.html" class="lesson-link">
+              <span class="lesson-name">Variables</span>
+              <span class="day-tag">Day 3</span>
+            </a>
+          </li>
+          <li class="lesson-item">
+            <a href="data1.html" class="lesson-link">
+              <span class="lesson-name">Data</span>
+              <span class="day-tag">Day 4</span>
+            </a>
+          </li>
+          <li class="lesson-item">
+            <a href="digital-citizen.html" class="lesson-link">
+              <span class="lesson-name">Digital Citizenship</span>
+              <span class="day-tag">Day 5</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Mathayom 4 card -->
+      <section class="level-card">
+        <div class="level-header">
+          <span class="level-badge">M4</span>
+          <h2>Mathayom 4</h2>
+        </div>
+        <ul class="lesson-list">
+          <li class="lesson-item">
+            <a href="#" class="lesson-link">
+              <span class="lesson-name">Algorithm</span>
+              <span class="day-tag">Day 1</span>
+            </a>
+          </li>
+          <li class="lesson-item">
+            <a href="#" class="lesson-link">
+              <span class="lesson-name">Functions</span>
+              <span class="day-tag">Day 2</span>
+            </a>
+          </li>
+          <li class="lesson-item">
+            <a href="#" class="lesson-link">
+              <span class="lesson-name">Data</span>
+              <span class="day-tag">Day 3</span>
+            </a>
+          </li>
+          <li class="lesson-item">
+            <a href="#" class="lesson-link">
+              <span class="lesson-name">Infographic</span>
+              <span class="day-tag">Day 4</span>
+            </a>
+          </li>
+          <li class="lesson-item">
+            <a href="#" class="lesson-link">
+              <span class="lesson-name">Digital Citizenship</span>
+              <span class="day-tag">Day 5</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="footer-note">
+      <span>⏳ Two-week preparation · 5 days per level</span>
+    </div>
+  </div>
+</body>
+</html>
